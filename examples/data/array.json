@@ -4,6 +4,12 @@
     "title": "Comment",
     "required": ["comments"],
     "properties": {
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
       "comments": {
         "type": "array",
         "maxItems": 2,
@@ -34,6 +40,46 @@
           },
           "required": ["name","comment"]
         }
+      },
+      "matrix": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "subs": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "sub": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "triplesubs": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "sub": {
+              "type": "array",
+              "items": {                
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -42,6 +88,7 @@
       "type": "help",
       "helpvalue": "<h4>Array Example</h4><p>Try adding a couple of forms, reorder by drag'n'drop.</p>"
     },
+    "tags",
     {
       "key": "comments",
   	  "add": "New",
@@ -63,10 +110,25 @@
         }
       ]
     },
+    "matrix",
+    {
+      "type": "array",
+      "key": "subs",
+      "items": [
+        "subs[].sub"
+      ]
+    },
+    "triplesubs",
     {
       "type": "submit",
       "style": "btn-info",
       "title": "OK"
     }
-  ]
+  ],
+  "model": {
+    "tags": ["one", "two"],
+    "comments": [{}],
+    "matrix": [["one","two"],["three"]],
+    "subs": [{ "sub":["yes!"] }]
+  }
 }
