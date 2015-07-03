@@ -6,6 +6,8 @@
     "properties": {
       "tags": {
         "type": "array",
+        "maxItems": 4,
+        "minItems": 2,
         "items": {
           "type": "string"
         }
@@ -71,7 +73,7 @@
           "properties": {
             "sub": {
               "type": "array",
-              "items": {                
+              "items": {
                 "type": "array",
                 "items": {
                   "type": "string"

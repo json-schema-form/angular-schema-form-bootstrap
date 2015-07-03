@@ -67,40 +67,90 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     }
     return input;
   };
-}).directive('sfNewArray', function() {
+}).directive('sfPropagateNgModel', [function() {
+  return {
+    scope: false,
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      // We need the ngModelController on several places,
+      // most notably for errors.
+      // So we emit it up to the decorator directive so it can put it on scope.
+      scope.$emit('schemaFormPropagateNgModelController', ngModel);
+    }
+  };
+}]).directive('sfNewArray', ['sfSelect', 'sfPath', function(sel, sfPath) {
   return {
     scope: false,
     link: function(scope, element, attrs) {
       scope.min = 0;
+
+/*
+TODO
+----
+* se till att valideringsfel på arrayen syns tyligare, kanske över add knappen?
+* testa att ändra arrayen utanför, testa att byta ut arrayen helt utanför.
+  * om den inte validerar när ngt förändras får vi lägga till en watch
+* testa en async validator och en vanlig $validator
+* implementera onChange med en watchCollection
+* implementera
+* disabla add och ta bort knapparna om limits har nåtts.
+
+*/
+
+
       scope.appendToArray = function() {
         var empty;
 
         // Same old add empty things to the array hack :(
-        if (scope.form && scope.form.schema && scope.form.schema.items) {
-          if (scope.form.schema.items.type === 'object') {
-            empty = {};
-          } else if (scope.form.schema.items.type === 'array') {
-            empty = [];
+        if (scope.form && scope.form.schema) {
+
+          if (scope.form.schema.items) {
+            if (scope.form.schema.items.type === 'object') {
+              empty = {};
+            } else if (scope.form.schema.items.type === 'array') {
+              empty = [];
+            }
+          }
+
+          // FIXME: valdiate maxItems and minItems and make sure button is disables if needed.
+        }
+
+        var model = scope.getModelArray();
+        if (!model) {
+          // Create and set an array if needed.
+          var selection = sfPath.parse(attrs.sfNewArray);
+          model = [];
+          sel(selection, scope, model);
+          if (scope.ngModel) {
+            ngModel.$setViewValue(model);
           }
         }
+        model.push(empty);
 
-        if (!scope.ngModel.$modelValue) {
-          scope.ngModel.$setViewValue([]);
-          scope.ngModel.$commitViewValue([]);
+        // validateField method is exported by schema-validate
+        if (scope.validateField) {
+          scope.validateField();
         }
-        scope.ngModel.$modelValue.push(empty);
-
       };
 
-      /*scope.$watch('ngModel.$modelValue', function() {
-        console.log(scope.ngModel.$modelValue)
-        scope.modelArray = scope.ngModel.$modelValue;
-      });*/
+      scope.deleteFromArray = function(index) {
+        var model = scope.getModelArray();
+        if (model) {
+          model.splice(index, 1);
+        }
+
+        // validateField method is exported by schema-validate
+        if (scope.validateField) {
+          scope.validateField();
+        }
+      };
+
       scope.getModelArray = function() {
-        console.log(scope.ngModel.$modelValue);
-        return scope.ngModel.$modelValue;
+        // Some simple perf testing sets $eval speeds at roughly the same as using sfSelect.
+        var model = scope.$eval(attrs.sfNewArray);
+        return model;
       };
 
     }
   };
-});
+}]);

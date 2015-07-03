@@ -1,6 +1,6 @@
 angular.module("schemaForm").run(["$templateCache", function($templateCache) {$templateCache.put("decorators/bootstrap/actions-trcl.html","<div class=\"btn-group schema-form-actions {{form.htmlClass}}\" ng-transclude=\"\"></div>");
 $templateCache.put("decorators/bootstrap/actions.html","<div class=\"btn-group schema-form-actions {{form.htmlClass}}\"><input ng-repeat-start=\"item in form.items\" type=\"submit\" class=\"btn {{ item.style || \'btn-default\' }} {{form.fieldHtmlClass}}\" value=\"{{item.title}}\" ng-if=\"item.type === \'submit\'\"> <button ng-repeat-end=\"\" class=\"btn {{ item.style || \'btn-default\' }} {{form.fieldHtmlClass}}\" type=\"button\" ng-disabled=\"form.readonly\" ng-if=\"item.type !== \'submit\'\" ng-click=\"buttonClick($event,item)\"><span ng-if=\"item.icon\" class=\"{{item.icon}}\"></span>{{item.title}}</button></div>");
-$templateCache.put("decorators/bootstrap/array.html","<div class=\"schema-form-array {{form.htmlClass}}\" sf-new-array=\"\"><h3 ng-show=\"form.title && form.notitle !== true\"></h3><ol class=\"list-group\" sf-field-model=\"\" schema-validate=\"form\" ui-sortable=\"\"><li class=\"list-group-item {{form.fieldHtmlClass}} schema-form-array-items\" sf-field-model=\"ng-repeat\" ng-repeat=\"item in $$value$$ track by $index\"><button ng-hide=\"form.readonly || form.remove === null\" ng-click=\"deleteFromArray($index)\" style=\"position: relative; z-index: 20;\" type=\"button\" class=\"close pull-right\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button> #{{item}}#{{modelArray}}*</li></ol><div class=\"clearfix\" style=\"padding: 15px;\"><button ng-hide=\"form.readonly || form.add === null\" ng-click=\"appendToArray()\" type=\"button\" class=\"btn {{ form.style.add || \'btn-default\' }} pull-right\"><i class=\"glyphicon glyphicon-plus\"></i> {{ form.add || \'Add\'}}</button></div><div class=\"help-block\" ng-show=\"(hasError() && errorMessage(schemaError())) || form.description\" ng-bind-html=\"(hasError() && errorMessage(schemaError())) || form.description\"></div></div>");
+$templateCache.put("decorators/bootstrap/array.html","<div class=\"schema-form-array {{form.htmlClass}}\" sf-field-model=\"sf-new-array\" sf-new-array=\"\"><h3 ng-show=\"form.title && form.notitle !== true\"></h3><ol class=\"list-group\" ui-sortable=\"\" sf-field-model=\"\" ng-model=\"\" schema-validate=\"form\"><li class=\"list-group-item {{form.fieldHtmlClass}} schema-form-array-items\" sf-field-model=\"ng-repeat\" ng-repeat=\"item in $$value$$ track by $index\"><button ng-hide=\"form.readonly || form.remove === null\" ng-click=\"deleteFromArray($index)\" ng-disabled=\"form.schema.minItems >= $index\" style=\"position: relative; z-index: 20;\" type=\"button\" class=\"close pull-right\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button></li></ol><div class=\"clearfix\" style=\"padding: 15px;\"><button ng-hide=\"form.readonly || form.add === null\" ng-click=\"appendToArray()\" ng-disabled=\"form.schema.maxItems <= getModelArray().length\" type=\"button\" class=\"btn {{ form.style.add || \'btn-default\' }} pull-right\"><i class=\"glyphicon glyphicon-plus\"></i> {{ form.add || \'Add\'}}</button></div><div class=\"help-block\" ng-show=\"(hasError() && errorMessage(schemaError())) || form.description\" ng-bind-html=\"(hasError() && errorMessage(schemaError())) || form.description\"></div></div>");
 $templateCache.put("decorators/bootstrap/checkbox.html","<div class=\"checkbox schema-form-checkbox {{form.htmlClass}}\" ng-class=\"{\'has-error\': form.disableErrorState !== true && hasError(), \'has-success\': form.disableSuccessState !== true && hasSuccess()}\"><label class=\"{{form.labelHtmlClass}}\"><input type=\"checkbox\" sf-changed=\"form\" ng-disabled=\"form.readonly\" sf-field-model=\"\" schema-validate=\"form\" class=\"{{form.fieldHtmlClass}}\" name=\"{{form.key.slice(-1)[0]}}\"> <span ng-bind-html=\"form.title\"></span></label><div class=\"help-block\" sf-message=\"form.description\"></div></div>");
 $templateCache.put("decorators/bootstrap/checkboxes.html","<div sf-array=\"form\" sf-field-model=\"\" class=\"form-group schema-form-checkboxes {{form.htmlClass}}\" ng-class=\"{\'has-error\': form.disableErrorState !== true && hasError(), \'has-success\': form.disableSuccessState !== true && hasSuccess()}\"><label class=\"control-label {{form.labelHtmlClass}}\" ng-show=\"showTitle()\">{{form.title}}</label><div class=\"checkbox\" ng-repeat=\"val in titleMapValues track by $index\"><label><input type=\"checkbox\" ng-disabled=\"form.readonly\" sf-changed=\"form\" class=\"{{form.fieldHtmlClass}}\" ng-model=\"titleMapValues[$index]\" name=\"{{form.key.slice(-1)[0]}}\"> <span ng-bind-html=\"form.titleMap[$index].name\"></span></label></div><div class=\"help-block\" sf-message=\"form.description\"></div></div>");
 $templateCache.put("decorators/bootstrap/default.html","<div class=\"form-group schema-form-{{form.type}} {{form.htmlClass}}\" ng-class=\"{\'has-error\': form.disableErrorState !== true && hasError(), \'has-success\': form.disableSuccessState !== true && hasSuccess(), \'has-feedback\': form.feedback !== false }\"><label class=\"control-label {{form.labelHtmlClass}}\" ng-class=\"{\'sr-only\': !showTitle()}\" for=\"{{form.key.slice(-1)[0]}}\">{{form.title}}</label> <input ng-if=\"!form.fieldAddonLeft && !form.fieldAddonRight\" ng-show=\"form.key\" type=\"{{form.type}}\" step=\"any\" sf-changed=\"form\" placeholder=\"{{form.placeholder}}\" class=\"form-control {{form.fieldHtmlClass}}\" id=\"{{form.key.slice(-1)[0]}}\" sf-field-model=\"\" ng-disabled=\"form.readonly\" schema-validate=\"form\" name=\"{{form.key.slice(-1)[0]}}\" aria-describedby=\"{{form.key.slice(-1)[0] + \'Status\'}}\"><div ng-if=\"form.fieldAddonLeft || form.fieldAddonRight\" ng-class=\"{\'input-group\': (form.fieldAddonLeft || form.fieldAddonRight)}\"><span ng-if=\"form.fieldAddonLeft\" class=\"input-group-addon\" ng-bind-html=\"form.fieldAddonLeft\"></span> <input ng-show=\"form.key\" type=\"{{form.type}}\" step=\"any\" sf-changed=\"form\" placeholder=\"{{form.placeholder}}\" class=\"form-control {{form.fieldHtmlClass}}\" id=\"{{form.key.slice(-1)[0]}}\" sf-field-model=\"\" ng-disabled=\"form.readonly\" schema-validate=\"form\" name=\"{{form.key.slice(-1)[0]}}\" aria-describedby=\"{{form.key.slice(-1)[0] + \'Status\'}}\"> <span ng-if=\"form.fieldAddonRight\" class=\"input-group-addon\" ng-bind-html=\"form.fieldAddonRight\"></span></div><span ng-if=\"form.feedback !== false\" class=\"form-control-feedback\" ng-class=\"evalInScope(form.feedback) || {\'glyphicon\': true, \'glyphicon-ok\': hasSuccess(), \'glyphicon-remove\': hasError() }\" aria-hidden=\"true\"></span> <span ng-if=\"hasError() || hasSuccess()\" id=\"{{form.key.slice(-1)[0] + \'Status\'}}\" class=\"sr-only\">{{ hasSuccess() ? \'(success)\' : \'(error)\' }}</span><div class=\"help-block\" sf-message=\"form.description\"></div></div>");
@@ -84,40 +84,90 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     }
     return input;
   };
-}).directive('sfNewArray', function() {
+}).directive('sfPropagateNgModel', [function() {
+  return {
+    scope: false,
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      // We need the ngModelController on several places,
+      // most notably for errors.
+      // So we emit it up to the decorator directive so it can put it on scope.
+      scope.$emit('schemaFormPropagateNgModelController', ngModel);
+    }
+  };
+}]).directive('sfNewArray', ['sfSelect', 'sfPath', function(sel, sfPath) {
   return {
     scope: false,
     link: function(scope, element, attrs) {
       scope.min = 0;
+
+/*
+TODO
+----
+* se till att valideringsfel på arrayen syns tyligare, kanske över add knappen?
+* testa att ändra arrayen utanför, testa att byta ut arrayen helt utanför.
+  * om den inte validerar när ngt förändras får vi lägga till en watch
+* testa en async validator och en vanlig $validator
+* implementera onChange med en watchCollection
+* implementera
+* disabla add och ta bort knapparna om limits har nåtts.
+
+*/
+
+
       scope.appendToArray = function() {
         var empty;
 
         // Same old add empty things to the array hack :(
-        if (scope.form && scope.form.schema && scope.form.schema.items) {
-          if (scope.form.schema.items.type === 'object') {
-            empty = {};
-          } else if (scope.form.schema.items.type === 'array') {
-            empty = [];
+        if (scope.form && scope.form.schema) {
+
+          if (scope.form.schema.items) {
+            if (scope.form.schema.items.type === 'object') {
+              empty = {};
+            } else if (scope.form.schema.items.type === 'array') {
+              empty = [];
+            }
+          }
+
+          // FIXME: valdiate maxItems and minItems and make sure button is disables if needed.
+        }
+
+        var model = scope.getModelArray();
+        if (!model) {
+          // Create and set an array if needed.
+          var selection = sfPath.parse(attrs.sfNewArray);
+          model = [];
+          sel(selection, scope, model);
+          if (scope.ngModel) {
+            ngModel.$setViewValue(model);
           }
         }
+        model.push(empty);
 
-        if (!scope.ngModel.$modelValue) {
-          scope.ngModel.$setViewValue([]);
-          scope.ngModel.$commitViewValue([]);
+        // validateField method is exported by schema-validate
+        if (scope.validateField) {
+          scope.validateField();
         }
-        scope.ngModel.$modelValue.push(empty);
-
       };
 
-      /*scope.$watch('ngModel.$modelValue', function() {
-        console.log(scope.ngModel.$modelValue)
-        scope.modelArray = scope.ngModel.$modelValue;
-      });*/
+      scope.deleteFromArray = function(index) {
+        var model = scope.getModelArray();
+        if (model) {
+          model.splice(index, 1);
+        }
+
+        // validateField method is exported by schema-validate
+        if (scope.validateField) {
+          scope.validateField();
+        }
+      };
+
       scope.getModelArray = function() {
-        console.log(scope.ngModel.$modelValue);
-        return scope.ngModel.$modelValue;
+        // Some simple perf testing sets $eval speeds at roughly the same as using sfSelect.
+        var model = scope.$eval(attrs.sfNewArray);
+        return model;
       };
 
     }
   };
-});
+}]);
