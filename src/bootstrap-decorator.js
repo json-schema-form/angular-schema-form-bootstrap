@@ -6,6 +6,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var simpleTransclusion  = sfBuilderProvider.builders.simpleTransclusion;
   var ngModelOptions = sfBuilderProvider.builders.ngModelOptions;
   var ngModel        = sfBuilderProvider.builders.ngModel;
+  var sfField        = sfBuilderProvider.builders.sfField;
 
   var array = function(args) {
     console.log('array', args);
@@ -24,7 +25,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           args.form.schema.items.type.indexOf('array') === -1) {
         console.log('setting state modelValue', args.form);
         var strKey = sfPathProvider.stringify(args.form.key).replace(/"/g, '&quot;') + '[$index]';
-        state.modelValue = 'getModelArray()[$index]'; //(args.state.modelName || 'model') + (strKey[0] !== '[' ? '.' : '') + strKey;
+        state.modelValue = 'modelArray[$index]'; //(args.state.modelName || 'model') + (strKey[0] !== '[' ? '.' : '') + strKey;
         //state.modelValue = 'model' + sfPathProvider.normalize(args.form.key) + '[$index]'; // 'modelArray[$index]';
       } else {
         state.modelName = 'item';
@@ -34,15 +35,15 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
       items.appendChild(childFrag);
     }
   };
-  var defaults = [ngModel, ngModelOptions];
+  var defaults = [sfField, ngModel, ngModelOptions];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
     textarea: {template: base + 'textarea.html', builder: defaults},
-    fieldset: {template: base + 'fieldset.html', builder: simpleTransclusion},
-    array: {template: base + 'array.html', builder: [ngModelOptions, ngModel, array]},
+    fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion]},
+    array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array]},
     tabarray: {template: base + 'tabarray.html', replace: false},
     tabs: {template: base + 'tabs.html', replace: false},
-    section: {template: base + 'section.html', builder: simpleTransclusion},
-    conditional: {template: base + 'section.html', builder: simpleTransclusion},
+    section: {template: base + 'section.html', builder: [sfField, simpleTransclusion]},
+    conditional: {template: base + 'section.html', builder: [sfField, simpleTransclusion]},
     actions: {template: base + 'actions.html', builder: defaults},
     select: {template: base + 'select.html', builder: defaults},
     checkbox: {template: base + 'checkbox.html', builder: defaults},
@@ -58,27 +59,10 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     'default': {template: base + 'default.html', builder: defaults}
   }, []);
 
-}]).filter('minLength', function() {
-  return function(input, min) {
-    input = input || [];
-    var diff = min - input.length;
-    if (diff > 0) {
-      return input.concat(new Array(diff));
-    }
-    return input;
-  };
-}).directive('sfPropagateNgModel', [function() {
-  return {
-    scope: false,
-    require: 'ngModel',
-    link: function(scope, element, attrs, ngModel) {
-      // We need the ngModelController on several places,
-      // most notably for errors.
-      // So we emit it up to the decorator directive so it can put it on scope.
-      scope.$emit('schemaFormPropagateNgModelController', ngModel);
-    }
-  };
-}]).directive('sfNewArray', ['sfSelect', 'sfPath', function(sel, sfPath) {
+}])
+
+/* Directives here are WIP, will be moved to main repo or their own files when soldifying */
+.directive('sfNewArray', ['sfSelect', 'sfPath', function(sel, sfPath) {
   return {
     scope: false,
     link: function(scope, element, attrs) {
@@ -88,22 +72,71 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 TODO
 ----
 * se till att valideringsfel på arrayen syns tyligare, kanske över add knappen?
+* kanske css för disable knappen på listor också.
 * testa att ändra arrayen utanför, testa att byta ut arrayen helt utanför.
   * om den inte validerar när ngt förändras får vi lägga till en watch
 * testa en async validator och en vanlig $validator
 * implementera onChange med en watchCollection
-* implementera
 * disabla add och ta bort knapparna om limits har nåtts.
 
 */
 
+      scope.modelArray = scope.$eval(attrs.sfNewArray);
+
+      // We need to have a ngModel to hook into validation. It doesn't really play well with
+      // arrays though so we both need to trigger validation and onChange.
+      // So we watch the value as well. But watching an array can be tricky. We wan't to know
+      // when it changes so we can validate,
+      var watchFn =  function() {
+        //scope.modelArray = modelArray;
+        scope.modelArray = scope.$eval(attrs.sfNewArray);
+        console.warn('array watch!')
+        // validateField method is exported by schema-validate
+        if (scope.validateField) {
+          console.warn('calling validate field');
+          scope.validateField();
+        }
+      };
+
+      var onChangeFn =  function() {
+        if (scope.form && scope.form.onChange) {
+          if (angular.isFunction(form.onChange)) {
+            form.onChange(ctrl.$modelValue, form);
+          } else {
+            scope.evalExpr(form.onChange, {'modelValue': ctrl.$modelValue, form: form});
+          }
+        }
+      };
+
+      // We need the form definition to make a decision on how we should listen.
+      var once = scope.$watch('form', function(form) {
+        if (!form) {
+          return;
+        }
+        // If we have "uniqueItems" set to true, we must deep watch for changes.
+        if (scope.form && scope.form.schema && scope.form.schema.uniqueItems === true) {
+          scope.$watch(attrs.sfNewArray, watchFn, true);
+
+          // We still need to trigger onChange though.
+          scope.$watch([attrs.sfNewArray, attrs.sfNewArray + '.length'], onChangeFn);
+
+        } else {
+          // Otherwise we like to check if the instance of the array has changed, or if something
+          // has been added/removed.
+          scope.$watch([attrs.sfNewArray, attrs.sfNewArray + '.length'], function() {
+            watchFn();
+            onChangeFn();
+          });
+        }
+
+        once();
+      });
 
       scope.appendToArray = function() {
         var empty;
 
         // Same old add empty things to the array hack :(
         if (scope.form && scope.form.schema) {
-
           if (scope.form.schema.items) {
             if (scope.form.schema.items.type === 'object') {
               empty = {};
@@ -111,46 +144,27 @@ TODO
               empty = [];
             }
           }
-
-          // FIXME: valdiate maxItems and minItems and make sure button is disables if needed.
         }
 
-        var model = scope.getModelArray();
+        var model = scope.modelArray;
         if (!model) {
           // Create and set an array if needed.
           var selection = sfPath.parse(attrs.sfNewArray);
           model = [];
           sel(selection, scope, model);
           if (scope.ngModel) {
-            ngModel.$setViewValue(model);
+            scope.ngModel.$setViewValue(model);
           }
         }
         model.push(empty);
-
-        // validateField method is exported by schema-validate
-        if (scope.validateField) {
-          scope.validateField();
-        }
       };
 
       scope.deleteFromArray = function(index) {
-        var model = scope.getModelArray();
+        var model = scope.modelArray;
         if (model) {
           model.splice(index, 1);
         }
-
-        // validateField method is exported by schema-validate
-        if (scope.validateField) {
-          scope.validateField();
-        }
       };
-
-      scope.getModelArray = function() {
-        // Some simple perf testing sets $eval speeds at roughly the same as using sfSelect.
-        var model = scope.$eval(attrs.sfNewArray);
-        return model;
-      };
-
     }
   };
 }]);
