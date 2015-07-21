@@ -68,19 +68,6 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     link: function(scope, element, attrs) {
       scope.min = 0;
 
-/*
-TODO
-----
-* se till att valideringsfel på arrayen syns tyligare, kanske över add knappen?
-* kanske css för disable knappen på listor också.
-* testa att ändra arrayen utanför, testa att byta ut arrayen helt utanför.
-  * om den inte validerar när ngt förändras får vi lägga till en watch
-* testa en async validator och en vanlig $validator
-* implementera onChange med en watchCollection
-* disabla add och ta bort knapparna om limits har nåtts.
-
-*/
-
       scope.modelArray = scope.$eval(attrs.sfNewArray);
 
       // We need to have a ngModel to hook into validation. It doesn't really play well with
