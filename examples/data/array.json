@@ -8,6 +8,7 @@
         "type": "array",
         "maxItems": 4,
         "minItems": 2,
+        "uniqueItems": true,
         "items": {
           "type": "string"
         }

@@ -3,9 +3,10 @@
       sf-new-array>
   <h3 ng-show="form.title && form.notitle !== true"></h3>
   <ol class="list-group" ui-sortable>
-    <li class="list-group-item {{form.fieldHtmlClass}} schema-form-array-items"
+    <li class="list-group-item {{form.fieldHtmlClass}}"
+        schema-form-array-items
         sf-field-model="ng-repeat"
-        ng-repeat="item in $$value$$ track by $index  ">
+        ng-repeat="item in $$value$$ track by $index">
       <button ng-hide="form.readonly || form.remove === null"
               ng-click="deleteFromArray($index)"
               ng-disabled="form.schema.minItems >= modelArray.length"

@@ -1,4 +1,3 @@
-
 angular.module('schemaForm').config(['schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider',
 function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var base = 'decorators/bootstrap/';
@@ -9,9 +8,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var sfField        = sfBuilderProvider.builders.sfField;
 
   var array = function(args) {
-    console.log('array', args);
-
-    var items = args.fieldFrag.querySelector('li.schema-form-array-items');
+    var items = args.fieldFrag.querySelector('[schema-form-array-items]');
     if (items) {
       state = angular.copy(args.state);
       state.keyRedaction = state.keyRedaction || 0;
@@ -40,7 +37,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     textarea: {template: base + 'textarea.html', builder: defaults},
     fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array]},
-    tabarray: {template: base + 'tabarray.html', replace: false},
+    tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array]},
     tabs: {template: base + 'tabs.html', replace: false},
     section: {template: base + 'section.html', builder: [sfField, simpleTransclusion]},
     conditional: {template: base + 'section.html', builder: [sfField, simpleTransclusion]},
@@ -77,10 +74,8 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
       var watchFn =  function() {
         //scope.modelArray = modelArray;
         scope.modelArray = scope.$eval(attrs.sfNewArray);
-        console.warn('array watch!')
         // validateField method is exported by schema-validate
         if (scope.validateField) {
-          console.warn('calling validate field');
           scope.validateField();
         }
       };
@@ -110,7 +105,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         } else {
           // Otherwise we like to check if the instance of the array has changed, or if something
           // has been added/removed.
-          scope.$watch([attrs.sfNewArray, attrs.sfNewArray + '.length'], function() {
+          scope.$watchGroup([attrs.sfNewArray, attrs.sfNewArray + '.length'], function() {
             watchFn();
             onChangeFn();
           });
@@ -120,6 +115,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
       });
 
       scope.appendToArray = function() {
+
         var empty;
 
         // Same old add empty things to the array hack :(
@@ -139,11 +135,11 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           var selection = sfPath.parse(attrs.sfNewArray);
           model = [];
           sel(selection, scope, model);
-          if (scope.ngModel) {
-            scope.ngModel.$setViewValue(model);
-          }
+          scope.modelArray = model;
         }
         model.push(empty);
+
+        return model;
       };
 
       scope.deleteFromArray = function(index) {
@@ -151,6 +147,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         if (model) {
           model.splice(index, 1);
         }
+        return model;
       };
     }
   };
