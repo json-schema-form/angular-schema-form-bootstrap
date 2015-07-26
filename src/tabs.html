@@ -9,13 +9,6 @@
   </ul>
 
   <div class="tab-content {{form.fieldHtmlClass}}">
-    <div class="tab-pane"
-         ng-disabled="form.readonly"
-         ng-repeat="tab in form.tabs"
-         ng-show="selected.tab === $index"
-         ng-class="{active: selected.tab === $index}">
-         <bootstrap-decorator ng-repeat="item in tab.items" form="item">
-         </bootstrap-decorator>
-    </div>
+  </div>
   </div>
 </div>

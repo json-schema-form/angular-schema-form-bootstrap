@@ -1,3 +1,6 @@
+/**
+ * TODO: starting form in tabarray, and arrays.
+ */
 angular.module('schemaForm').config(['schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider',
 function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var base = 'decorators/bootstrap/';
@@ -32,13 +35,32 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
       items.appendChild(childFrag);
     }
   };
+
+  var tabs = function(args) {
+    if (args.form.tabs && args.form.tabs.length > 0) {
+      var tabContent = args.fieldFrag.querySelector('.tab-content');
+
+      args.form.tabs.forEach(function(tab, index) {
+        var div = document.createElement('div');
+        div.className = 'tab-pane';
+        div.setAttribute('ng-disabled', 'form.readonly');
+        div.setAttribute('ng-show', 'selected.tab === ' + index);
+        div.setAttribute('ng-class', '{active: selected.tab === ' + index + '}');
+
+        var childFrag = args.build(tab.items, args.path + '.tabs[' + index + '].items', args.state);
+        div.appendChild(childFrag);
+        tabContent.appendChild(div);
+      });
+    }
+  };
+
   var defaults = [sfField, ngModel, ngModelOptions];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
     textarea: {template: base + 'textarea.html', builder: defaults},
     fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array]},
     tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array]},
-    tabs: {template: base + 'tabs.html', replace: false},
+    tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, ngModel, tabs]},
     section: {template: base + 'section.html', builder: [sfField, simpleTransclusion]},
     conditional: {template: base + 'section.html', builder: [sfField, simpleTransclusion]},
     actions: {template: base + 'actions.html', builder: defaults},
