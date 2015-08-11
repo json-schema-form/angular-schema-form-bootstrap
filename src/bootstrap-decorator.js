@@ -1,6 +1,3 @@
-/**
- * TODO: starting form in tabarray, and arrays.
- */
 angular.module('schemaForm').config(['schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider',
 function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var base = 'decorators/bootstrap/';
@@ -66,7 +63,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     actions: {template: base + 'actions.html', builder: defaults},
     select: {template: base + 'select.html', builder: defaults},
     checkbox: {template: base + 'checkbox.html', builder: defaults},
-    checkboxes: {template: base + 'checkboxes.html', replace: false},
+    checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array]},
     number: {template: base + 'default.html', builder: defaults},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
@@ -137,6 +134,58 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           scope.$watchGroup([attrs.sfNewArray, attrs.sfNewArray + '.length'], function() {
             watchFn();
             onChangeFn();
+          });
+        }
+
+        // Title Map handling
+        // If form has a titleMap configured we'd like to enable looping over
+        // titleMap instead of modelArray, this is used for intance in
+        // checkboxes. So instead of variable number of things we like to create
+        // a array value from a subset of values in the titleMap.
+        // The problem here is that ng-model on a checkbox doesn't really map to
+        // a list of values. This is here to fix that.
+        if (form.titleMap && form.titleMap.length > 0) {
+          scope.titleMapValues = [];
+
+          // We watch the model for changes and the titleMapValues to reflect
+          // the modelArray
+          var updateTitleMapValues = function(arr) {
+            scope.titleMapValues = [];
+            arr = arr || [];
+
+            form.titleMap.forEach(function(item) {
+              scope.titleMapValues.push(arr.indexOf(item.value) !== -1);
+            });
+          };
+          //Catch default values
+          updateTitleMapValues(scope.modelArray);
+
+          // TODO: Refactor and see if we can get rid of this watch by piggy backing on the
+          // validation watch.
+          scope.$watchCollection('modelArray', updateTitleMapValues);
+
+          //To get two way binding we also watch our titleMapValues
+          scope.$watchCollection('titleMapValues', function(vals, old) {
+            if (vals && vals !== old) {
+              var arr = scope.modelArray;
+
+              // Apparently the fastest way to clear an array, readable too.
+              // http://jsperf.com/array-destroy/32
+              while (arr.length > 0) {
+                arr.pop();
+              }
+              form.titleMap.forEach(function(item, index) {
+                if (vals[index]) {
+                  arr.push(item.value);
+                }
+              });
+
+              // Time to validate the rebuilt array.
+              // validateField method is exported by schema-validate
+              if (scope.validateField) {
+                scope.validateField();
+              }
+            }
           });
         }
 
