@@ -7,6 +7,32 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var ngModel        = sfBuilderProvider.builders.ngModel;
   var sfField        = sfBuilderProvider.builders.sfField;
 
+  var condition = function(args) {
+    // Do we have a condition? Then we slap on an ng-if on all children,
+    // but be nice to existing ng-if.
+    if (args.form.condition) {
+      var evalExpr = 'evalExpr(' + args.path + '.contidion, { model: model, "arrayIndex": $index})';
+      if (args.form.key) {
+        var strKey = sfPathProvider.stringify(args.form.key);
+        evalExpr = 'evalExpr(' + args.path + '.condition,{ model: model, "arrayIndex": $index, ' +
+                   '"modelValue": model' + (strKey[0] === '[' ? '' : '.') + strKey + '})';
+      }
+
+      var children = args.fieldFrag.children;
+      for (var i = 0; i < children.length; i++) {
+        var child = children[i];
+        var ngIf = child.getAttribute('ng-if');
+        child.setAttribute(
+          'ng-if',
+          ngIf ?
+          '(' + ngIf +
+          ') || (' + evalExpr + ')'
+          : evalExpr
+        );
+      }
+    }
+  };
+
   var array = function(args) {
     var items = args.fieldFrag.querySelector('[schema-form-array-items]');
     if (items) {
@@ -51,19 +77,19 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     }
   };
 
-  var defaults = [sfField, ngModel, ngModelOptions];
+  var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
     textarea: {template: base + 'textarea.html', builder: defaults},
-    fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion]},
-    array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array]},
-    tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array]},
-    tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, ngModel, tabs]},
-    section: {template: base + 'section.html', builder: [sfField, simpleTransclusion]},
-    conditional: {template: base + 'section.html', builder: [sfField, simpleTransclusion]},
+    fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion, condition]},
+    array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, ngModel, tabs, condition]},
+    section: {template: base + 'section.html', builder: [sfField, simpleTransclusion, condition]},
+    conditional: {template: base + 'section.html', builder: [sfField, simpleTransclusion, condition]},
     actions: {template: base + 'actions.html', builder: defaults},
     select: {template: base + 'select.html', builder: defaults},
     checkbox: {template: base + 'checkbox.html', builder: defaults},
-    checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array]},
+    checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     number: {template: base + 'default.html', builder: defaults},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
