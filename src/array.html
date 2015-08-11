@@ -1,7 +1,7 @@
 <div  class="schema-form-array {{form.htmlClass}}"
       sf-field-model="sf-new-array"
       sf-new-array>
-  <h3 ng-show="form.title && form.notitle !== true"></h3>
+  <label class="control-label" ng-show="showTitle()">{{ form.title }}</label>
   <ol class="list-group" ui-sortable>
     <li class="list-group-item {{form.fieldHtmlClass}}"
         schema-form-array-items
