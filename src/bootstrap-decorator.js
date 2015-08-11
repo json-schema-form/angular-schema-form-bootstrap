@@ -80,7 +80,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
 }])
 
-/* Directives here are WIP, will be moved to main repo or their own files when soldifying */
+/* Directives here are WIP, will be moved to main repo or their own files when solidifying */
 .directive('sfNewArray', ['sfSelect', 'sfPath', function(sel, sfPath) {
   return {
     scope: false,
@@ -117,6 +117,13 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         if (!form) {
           return;
         }
+
+        // Always start with one empty form unless configured otherwise.
+        // Special case: don't do it if form has a titleMap
+        if (!form.titleMap && form.startEmpty !== true && (!scope.modelArray || scope.modelArray.length === 0)) {
+          scope.appendToArray();
+        }
+
         // If we have "uniqueItems" set to true, we must deep watch for changes.
         if (scope.form && scope.form.schema && scope.form.schema.uniqueItems === true) {
           scope.$watch(attrs.sfNewArray, watchFn, true);
