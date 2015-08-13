@@ -46,7 +46,6 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
           args.form.schema.items.type &&
           args.form.schema.items.type.indexOf('object') === -1 &&
           args.form.schema.items.type.indexOf('array') === -1) {
-        console.log('setting state modelValue', args.form);
         var strKey = sfPathProvider.stringify(args.form.key).replace(/"/g, '&quot;') + '[$index]';
         state.modelValue = 'modelArray[$index]'; //(args.state.modelName || 'model') + (strKey[0] !== '[' ? '.' : '') + strKey;
         //state.modelValue = 'model' + sfPathProvider.normalize(args.form.key) + '[$index]'; // 'modelArray[$index]';
@@ -83,13 +82,13 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion, condition]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, ngModel, tabs, condition]},
+    tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, tabs, condition]},
     section: {template: base + 'section.html', builder: [sfField, simpleTransclusion, condition]},
     conditional: {template: base + 'section.html', builder: [sfField, simpleTransclusion, condition]},
     actions: {template: base + 'actions.html', builder: defaults},
     select: {template: base + 'select.html', builder: defaults},
     checkbox: {template: base + 'checkbox.html', builder: defaults},
-    checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array]},
     number: {template: base + 'default.html', builder: defaults},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
