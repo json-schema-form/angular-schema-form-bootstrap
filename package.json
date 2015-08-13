@@ -15,9 +15,12 @@
     "gulp": "^3.8.11",
     "gulp-angular-templatecache": "^1.6.0",
     "gulp-concat": "^2.5.2",
+    "gulp-jscs": "^2.0.0",
     "gulp-minify-html": "^1.0.2",
+    "gulp-protractor": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.2.0",
+    "gulp-umd": "^0.2.0",
     "gulp-watch": "^4.2.4",
     "streamqueue": "^0.1.3"
   }
