@@ -173,10 +173,22 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
         } else {
           // Otherwise we like to check if the instance of the array has changed, or if something
           // has been added/removed.
-          scope.$watchGroup([attrs.sfNewArray, attrs.sfNewArray + '.length'], function() {
-            watchFn();
-            onChangeFn();
-          });
+          if (scope.$watchGroup) {
+            scope.$watchGroup([attrs.sfNewArray, attrs.sfNewArray + '.length'], function() {
+              watchFn();
+              onChangeFn();
+            });
+          } else {
+            // Angular 1.2 support
+            scope.$watch(attrs.sfNewArray, function() {
+              watchFn();
+              onChangeFn();
+            });
+            scope.$watch(attrs.sfNewArray + '.length', function() {
+              watchFn();
+              onChangeFn();
+            });
+          }
         }
 
         // Title Map handling

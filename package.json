@@ -1,8 +1,8 @@
 {
-  "name": "angular-schema-form-material",
-  "version": "1.0.0",
-  "description": "Angular Material decorator for Angular Schema Form",
-  "main": "material-decorator.js",
+  "name": "angular-schema-form-bootstrap",
+  "version": "0.1.0",
+  "description": "Bootstrap 3 decorator for Angular Schema Form",
+  "main": "bootstrap-decorator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
