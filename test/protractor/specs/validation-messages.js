@@ -44,7 +44,8 @@ describe('Schema Form validation messages', function() {
       '3': '3 is less than the allowed minimum of 6',
       '66': '66 is greater than the allowed maximum of 50',
       '11': 'Value is not a multiple of 3',
-      'aaa': 'Value is not a valid number'
+      // Chrome no longer lets you input anything but numbers in a type="number" input.
+      'aaa': 'Required'  //'Value is not a valid number'
     };
 
     Object.keys(integerTests).forEach(function(value) {
