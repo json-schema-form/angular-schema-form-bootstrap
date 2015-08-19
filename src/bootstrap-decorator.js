@@ -3,11 +3,11 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var base = 'decorators/bootstrap/';
 
   var simpleTransclusion  = sfBuilderProvider.builders.simpleTransclusion;
-  var ngModelOptions = sfBuilderProvider.builders.ngModelOptions;
-  var ngModel        = sfBuilderProvider.builders.ngModel;
-  var sfField        = sfBuilderProvider.builders.sfField;
-  var condition      = sfBuilderProvider.builders.condition;
-  var array          = sfBuilderProvider.builders.array;
+  var ngModelOptions      = sfBuilderProvider.builders.ngModelOptions;
+  var ngModel             = sfBuilderProvider.builders.ngModel;
+  var sfField             = sfBuilderProvider.builders.sfField;
+  var condition           = sfBuilderProvider.builders.condition;
+  var array               = sfBuilderProvider.builders.array;
 
   // Tabs is so bootstrap specific that it stays here.
   var tabs = function(args) {
@@ -40,7 +40,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     actions: {template: base + 'actions.html', builder: defaults},
     select: {template: base + 'select.html', builder: defaults},
     checkbox: {template: base + 'checkbox.html', builder: defaults},
-    checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array]},
+    checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
     number: {template: base + 'default.html', builder: defaults},
     password: {template: base + 'default.html', builder: defaults},
     submit: {template: base + 'submit.html', builder: defaults},
