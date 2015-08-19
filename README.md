@@ -24,7 +24,7 @@ or
 npm install angular-schema-form-bootstrap
 ```
 
-And then include `bootstrap-decorator.min.js`. Note that angular-schema-form >= 0.8.6 is needed.
+And then include `bootstrap-decorator.min.js`. Note that angular-schema-form >= 0.8.7 is needed.
 
 
 Future

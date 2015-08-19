@@ -1,6 +1,6 @@
 {
   "name": "angular-schema-form-bootstrap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bootstrap 3 decorator for Angular Schema Form",
   "main": "bootstrap-decorator.js",
   "scripts": {
