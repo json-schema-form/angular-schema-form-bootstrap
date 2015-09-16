@@ -1,3 +1,4 @@
+var schemaFormBootstrap;
 angular.module('schemaForm').config(['schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider',
 function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var base = 'decorators/bootstrap/';
