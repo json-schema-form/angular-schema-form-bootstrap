@@ -1,0 +1,49 @@
+{
+  "schema": {
+    "type": "object",
+    "title": "Comment",
+    "properties": {
+      "name":  {
+        "anyOf": [
+          {
+            "title": "Name",
+            "type": "string"
+          },
+          {
+            "title": "Age",
+            "type": "number"
+          }
+        ]
+      },
+      "subforms":  {
+        "type" : "array",
+        "items" : {
+          "anyOf" : [
+            { "type" : "object", "properties" : { "name" : { "type" : "string" }}},
+            { "type" : "object", "properties" : { "price" : { "type" : "number" } } }
+          ]
+        }
+      }
+    },
+    "required": ["name","email","comment"]
+  },
+  "form": [
+    {
+      "type": "formselect",
+      "key": "name",
+      "items": [
+        "name.{0}",
+        {
+          "key": "name.{1}",
+          "placeholder": "Age instead"
+        }
+      ]
+    },
+    "subforms",
+    {
+      "type": "submit",
+	  "style": "btn-info",
+      "title": "OK"
+    }
+  ]
+}

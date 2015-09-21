@@ -8,6 +8,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var sfField             = sfBuilderProvider.builders.sfField;
   var condition           = sfBuilderProvider.builders.condition;
   var array               = sfBuilderProvider.builders.array;
+  var transclusion        = sfBuilderProvider.builders.transclusion;
 
   // Tabs is so bootstrap specific that it stays here.
   var tabs = function(args) {
@@ -28,8 +29,17 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     }
   };
 
+  var formSelectItemsNgShow = function(args) {
+    var children = args.fieldFrag.querySelectorAll('[sf-field-transclude] [sf-field]');
+
+    for (var i = 0; i < children.length; i++) {
+      children[i].setAttribute('ng-if', 'selectedForm.value === ' + i);
+    }
+  };
+
   var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
+    formselect: {template: base + 'formselect.html', builder: [sfField, transclusion, formSelectItemsNgShow, condition, ngModelOptions, ngModel]},
     textarea: {template: base + 'textarea.html', builder: defaults},
     fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion, condition]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},

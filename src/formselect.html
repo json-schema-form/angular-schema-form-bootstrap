@@ -1,0 +1,12 @@
+<div class="schema-form-form-select {{form.htmlClass}}" sf-form-select="form">
+  <h1>Form select</h1>
+  <legend ng-class="{'sr-only': !showTitle() }">{{ form.title }}</legend>
+  <div class="help-block" ng-show="form.description" ng-bind-html="form.description"></div>
+  <select ng-model="selectedForm.value"
+          ng-disabled="form.readonly"
+          class="form-control {{form.fieldHtmlClass}}"
+          ng-options="item.value as item.name group by item.group for item in form.titleMap">
+  </select>
+  <div sf-field-transclude="items">
+  </div>
+</div>
