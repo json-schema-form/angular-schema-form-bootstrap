@@ -2,7 +2,11 @@
      sf-new-array
      class="form-group schema-form-checkboxes {{form.htmlClass}}"
      ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
-  <label class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()">{{form.title}}</label>
+  <label class="control-label {{form.labelHtmlClass}}"
+         sf-field-model
+         schema-validate="form"
+         ng-show="showTitle()">{{form.title}}</label>
+
   <div class="checkbox" ng-repeat="val in titleMapValues track by $index" >
     <label>
       <input type="checkbox"
