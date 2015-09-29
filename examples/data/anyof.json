@@ -51,7 +51,7 @@
         {"name": "c", "value": 1}
       ],
       "items": [
-        {"type": "fieldset", "items": ["a", "b"]},
+        ["a", "b"],
         "c"
       ]
     },
