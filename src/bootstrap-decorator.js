@@ -30,7 +30,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   };
 
   var formSelectItemsNgShow = function(args) {
-    var children = args.fieldFrag.querySelectorAll('[sf-field-transclude] .form-group');
+    var children = args.fieldFrag.querySelectorAll('[sf-field-transclude] > *');
 
     for (var i = 0; i < children.length; i++) {
       children[i].setAttribute('ng-if', 'selectedForm.value === ' + i);
