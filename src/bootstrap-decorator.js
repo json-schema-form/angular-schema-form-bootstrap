@@ -39,7 +39,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
   var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
-    formselect: {template: base + 'formselect.html', builder: [sfField, transclusion, formSelectItemsNgShow, condition, ngModelOptions, ngModel]},
+    formselect: {template: base + 'formselect.html', builder: [sfField, transclusion, formSelectItemsNgShow, condition, ngModelOptions]},
     textarea: {template: base + 'textarea.html', builder: defaults},
     fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion, condition]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
