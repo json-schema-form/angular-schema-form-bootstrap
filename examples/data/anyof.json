@@ -26,7 +26,59 @@
       },
       "a": {"type": "number"},
       "b": {"type": "string"},
-      "c": {"type": "integer"}
+      "c": {"type": "integer"},
+      "person": {
+        "type": "object",
+        "title": "person",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "primaryTransportation": {
+            "type": "object",
+            "oneOf": [
+              {
+                "title": "pedestrian",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum":["pedestrian"]
+                  }
+                }
+              }, {
+                "title": "automobile",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["bicycle", "moped", "motorcycle", "car", "truck", "suv", "van"]
+                  },
+                  "make": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  }
+                }
+              }, {
+                "title": "public transit",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["bus", "subway", "train", "other light rail", "shuttle"]
+                  },
+                  "route": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+      }
     },
     "required": ["name","email","comment"]
   },
@@ -55,6 +107,7 @@
         "c"
       ]
     },
+    "person",
     {
       "type": "submit",
 	  "style": "btn-info",
