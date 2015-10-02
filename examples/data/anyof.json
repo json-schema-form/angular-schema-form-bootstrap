@@ -23,7 +23,10 @@
             { "type" : "object", "properties" : { "price" : { "type" : "number" } } }
           ]
         }
-      }
+      },
+      "a": {"type": "number"},
+      "b": {"type": "string"},
+      "c": {"type": "integer"}
     },
     "required": ["name","email","comment"]
   },
@@ -41,9 +44,25 @@
     },
     "subforms",
     {
+      "type": "formselect",
+      "title": "manually configured (no oneOf)",
+      "titleMap": [
+        {"name": "a and b", "value": 0},
+        {"name": "c", "value": 1}
+      ],
+      "items": [
+        ["a", "b"],
+        "c"
+      ]
+    },
+    {
       "type": "submit",
 	  "style": "btn-info",
       "title": "OK"
     }
-  ]
+  ],
+  "model": {
+    "name": 7,
+    "subforms": [{}]
+  }
 }
