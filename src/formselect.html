@@ -1,4 +1,7 @@
-<div class="schema-form-form-select {{form.htmlClass}}" sf-form-select="form">
+<div class="schema-form-form-select {{form.htmlClass}}"
+     sf-form-select="form"
+     sf-form-select-model
+     sf-field-model="sf-form-select-model">
   <legend ng-class="{'sr-only': !showTitle() }">{{ form.title }}</legend>
   <div class="help-block" ng-show="form.description" ng-bind-html="form.description"></div>
   <select ng-model="selectedForm.value"

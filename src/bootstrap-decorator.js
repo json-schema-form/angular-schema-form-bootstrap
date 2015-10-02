@@ -30,7 +30,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
     }
   };
 
-  var formSelectItemsNgShow = function(args) {
+  var formSelectItemsNgIf = function(args) {
     var children = args.fieldFrag.querySelectorAll('[sf-field-transclude] > *');
 
     for (var i = 0; i < children.length; i++) {
@@ -40,7 +40,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
   var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
-    formselect: {template: base + 'formselect.html', builder: [sfField, transclusion, formSelectItemsNgShow, condition, ngModelOptions]},
+    formselect: {template: base + 'formselect.html', builder: [sfField, transclusion, formSelectItemsNgIf, condition, ngModelOptions]},
     textarea: {template: base + 'textarea.html', builder: defaults},
     fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion, condition]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
