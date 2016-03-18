@@ -34,12 +34,15 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
       var option = document.createElement('option');
       option.setAttribute('value', '');
 
-      // We only want the placeholder to show when we do not have a value on the model.
-      // We make ngModel builder replace all so we can use $$value$$.
+      /* We only want the placeholder to show when we do not have a value on the model.
+       * We make ngModel builder replace all so we can use $$value$$.
+       */
       option.setAttribute('sf-field-model', 'replaceAll');
 
-      // https://github.com/angular/angular.js/issues/12190#issuecomment-115277040
-      // emptyOption.attr('selected', true) does not like the ng-if comment.
+      /* https://github.com/angular/angular.js/issues/12190#issuecomment-115277040
+       * angular > 1.4 does a emptyOption.attr('selected', true)
+       * which does not like the ng-if comment.
+       */
       if (angular.version.major === 1 && angular.version.minor < 4) {
         option.setAttribute('ng-if', '!$$value$$');
       } else {
