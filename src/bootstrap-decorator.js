@@ -44,9 +44,9 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
        * which does not like the ng-if comment.
        */
       if (angular.version.major === 1 && angular.version.minor < 4) {
-        option.setAttribute('ng-if', '!$$value$$');
+        option.setAttribute('ng-if', '$$value$$ === undefined');
       } else {
-        option.setAttribute('ng-show', '!$$value$$');
+        option.setAttribute('ng-show', '$$value$$ === undefined');
       }
 
       option.textContent = args.form.placeholder;
