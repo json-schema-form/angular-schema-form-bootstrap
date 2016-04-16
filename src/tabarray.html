@@ -6,8 +6,9 @@
      class="clearfix schema-form-tabarray schema-form-tabarray-{{form.tabType || 'left'}} {{form.htmlClass}}">
   <div ng-if="!form.tabType || form.tabType !== 'right'"
        ng-class="{'col-xs-3': !form.tabType || form.tabType === 'left'}">
-    <ul class="nav nav-tabs"
-        ng-class="{ 'tabs-left': !form.tabType || form.tabType === 'left'}">
+    <ol class="nav nav-tabs"
+        ng-class="{ 'tabs-left': !form.tabType || form.tabType === 'left'}"
+        sf-field-model ui-sortable="{items: 'li:not(:last-child)'}">
       <li sf-field-model="ng-repeat"
           ng-repeat="item in $$value$$ track by $index"
           ng-click="$event.preventDefault() || (selected.tab = $index)"
@@ -22,7 +23,7 @@
           {{ form.add || 'Add'}}
           </a>
       </li>
-    </ul>
+    </ol>
   </div>
 
   <div ng-class="{'col-xs-9': !form.tabType || form.tabType === 'left' || form.tabType === 'right'}">
