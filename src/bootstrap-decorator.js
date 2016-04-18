@@ -27,13 +27,24 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
       });
     }
   };
+  
+  // Set tabArray sortOptions.items default.
+  var tabArray = function(args) {
+    if(args.form.hasOwnProperty('sortOptions')) {
+      if(!args.form.sortOptions.hasOwnProperty('items')) {
+        args.form.sortOptions['items'] = 'li:not(:last-child)';
+      }
+    } else {
+      args.form['sortOptions'] = {items: 'li:not(:last-child)'};
+    }
+  }
 
   var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
     textarea: {template: base + 'textarea.html', builder: defaults},
     fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion, condition]},
     array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array, condition, tabArray]},
     tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, tabs, condition]},
     section: {template: base + 'section.html', builder: [sfField, simpleTransclusion, condition]},
     conditional: {template: base + 'section.html', builder: [sfField, simpleTransclusion, condition]},

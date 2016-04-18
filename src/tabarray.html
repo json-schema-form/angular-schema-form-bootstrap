@@ -8,7 +8,7 @@
        ng-class="{'col-xs-3': !form.tabType || form.tabType === 'left'}">
     <ol class="nav nav-tabs"
         ng-class="{ 'tabs-left': !form.tabType || form.tabType === 'left'}"
-        sf-field-model ui-sortable="{items: 'li:not(:last-child)'}">
+        sf-field-model ui-sortable="form.sortOptions">
       <li sf-field-model="ng-repeat"
           ng-repeat="item in $$value$$ track by $index"
           ng-click="$event.preventDefault() || (selected.tab = $index)"
