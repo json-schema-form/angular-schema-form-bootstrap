@@ -15,7 +15,7 @@
           ng-class="{active: selected.tab === $index}">
           <a href="#">{{interp(form.title,{'$index':$index, value: item}) || $index}}</a>
       </li>
-      <li ng-hide="form.readonly"
+      <li ng-hide="form.readonly || form.add === null"
           ng-disabled="form.schema.maxItems <= modelArray.length"
           ng-click="$event.preventDefault() || (selected.tab = appendToArray().length - 1)">
         <a href="#">
@@ -36,7 +36,7 @@
 
            <div schema-form-array-items></div>
 
-           <button ng-hide="form.readonly"
+           <button ng-hide="form.readonly || form.remove === null"
                    ng-click="selected.tab = deleteFromArray($index).length - 1"
                    ng-disabled="form.schema.minItems >= modelArray.length"
                    type="button"
@@ -60,7 +60,7 @@
           ng-class="{active: selected.tab === $index}">
           <a href="#">{{interp(form.title,{'$index':$index, value: item}) || $index}}</a>
       </li>
-      <li ng-hide="form.readonly"
+      <li ng-hide="form.readonly || form.add === null"
           ng-disabled="form.schema.maxItems <= modelArray.length"
           ng-click="$event.preventDefault() || (selected.tab = appendToArray().length - 1)">
         <a href="#">
