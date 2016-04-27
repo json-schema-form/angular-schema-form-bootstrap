@@ -1,0 +1,202 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Tab Array Demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../bower_components/bootstrap-vertical-tabs/bootstrap.vertical-tabs.min.css">
+        
+        <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script type="text/javascript" src="../bower_components/tv4/tv4.js"></script>
+        <script type="text/javascript" src="../bower_components/objectpath/lib/ObjectPath.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-schema-form/dist/schema-form.js"></script>
+        <script type="text/javascript" src="../bootstrap-decorator.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-ui-sortable/sortable.min.js"></script>
+        <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+        
+        <script type="text/javascript">
+          var exampleApp = angular.module('exampleApp',['schemaForm', 'ui.sortable']);
+          
+          exampleApp.controller('exampleCtrl', ['$scope', function($scope) {
+            
+            $scope.model = {
+              "exampleSelector": "standard"
+            };
+            
+            $scope.schema = {
+              "type": "object",
+              "properties": {
+                "exampleSelector": {
+                  "type": "string",
+                  "title": "Tab Array Example Selector",
+                  "enum": [
+                    "standard",
+                    "addDisabled",
+                    "removeDisabled",
+                    "sortable"
+                  ]
+                },
+                "standardTabArray": {
+                  "type": "array",
+                  "items": { 
+                    "type": "object", 
+                    "properties": { 
+                      "name": { "type": "string" }, 
+                      "nick": { "type": "string" }
+                    }
+                  }
+                },
+                "addDisabledTabArray": {
+                  "type": "array",
+                  "items": { 
+                    "type": "object", 
+                    "properties": { 
+                      "name": { "type": "string" }, 
+                      "nick": { "type": "string" }
+                    }
+                  }
+                },
+                "removeDisabledTabArray": {
+                  "type": "array",
+                  "items": { 
+                    "type": "object", 
+                    "properties": { 
+                      "name": { "type": "string" }, 
+                      "nick": { "type": "string" }
+                    }
+                  }
+                },
+                "sortableTabArray": {
+                  "type": "array",
+                  "items": { 
+                    "type": "object", 
+                    "properties": { 
+                      "name": { "type": "string" }, 
+                      "nick": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            };
+
+            $scope.form = [
+              {
+                "key": "exampleSelector",
+                "titleMap": [
+                  {"value": "standard", "name": "Standard"},
+                  {"value": "addDisabled", "name": "Add Disabled"},
+                  {"value": "removeDisabled", "name": "Remove Disabled"},
+                  {"value": "sortable", "name": "Sortable"}
+                ]
+              },
+              {
+                "type": "section",
+                "condition": "model.exampleSelector == 'standard'",
+                "title": "",
+                "htmlCss": "row",
+                "items": [
+                  {
+                    "type": "help",
+                    "helpvalue": "<h4>Standard tab array</h4>"
+                  },
+                  {
+                    "key": "standardTabArray",
+                    "type": "tabarray",
+                    "title": "My name is: {{ value.name }}",
+                    "sortOptions": {
+                      "disabled": true
+                    },
+                    "items" : [
+                      {"key": "standardTabArray[].name", "htmlClass": "nameField"},
+                      {"key": "standardTabArray[].nick", "htmlClass": "nickField"}
+                    ]
+                  },
+                ]
+              },
+              {
+                "type": "section",
+                "condition": "model.exampleSelector == 'addDisabled'",
+                "htmlCss": "row",
+                "items": [
+                  {
+                    "type": "help",
+                    "helpvalue": "<h4>Tab array with add link hidden</h4>"
+                  },
+                  {
+                    "key": "addDisabledTabArray",
+                    "type": "tabarray",
+                    "add": null,
+                    "title": "My name is: {{ value.name }}",
+                    "sortOptions": {
+                      "disabled": true
+                    },
+                    "items" : [
+                      {"key": "addDisabledTabArray[].name", "htmlClass": "nameField"},
+                      {"key": "addDisabledTabArray[].nick", "htmlClass": "nickField"}
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "condition": "model.exampleSelector == 'removeDisabled'",
+                "htmlCss": "row",
+                "items": [
+                  {
+                    "type": "help",
+                    "helpvalue": "<h4>Tab array with remove button hidden</h4>"
+                  },
+                  {
+                    "key": "removeDisabledTabArray",
+                    "type": "tabarray",
+                    "remove": null,
+                    "title": "My name is: {{ value.name }}",
+                    "sortOptions": {
+                      "disabled": true
+                    },
+                    "items" : [
+                      {"key": "removeDisabledTabArray[].name", "htmlClass": "nameField"},
+                      {"key": "removeDisabledTabArray[].nick", "htmlClass": "nickField"}
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "condition": "model.exampleSelector == 'sortable'",
+                "htmlCss": "row",
+                "items": [
+                  {
+                    "type": "help",
+                    "helpvalue": "<h4>Drag and drop sortable tab array</h4>"
+                  },
+                  {
+                    "key": "sortableTabArray",
+                    "type": "tabarray",
+                    "title": "My name is: {{ value.name }}",
+                    "items" : [
+                      {"key": "sortableTabArray[].name", "htmlClass": "nameField"},
+                      {"key": "sortableTabArray[].nick", "htmlClass": "nickField"}
+                    ]
+                  }
+                ]
+              }
+            ];
+          }]);
+        </script>
+    </head>
+    <body ng-app="exampleApp" class="container">
+      <h3>Tab Array Demo</h3>
+      <p>Drag and drop tabs to order the elements in the array</p>
+      <div class="container" ng-controller="exampleCtrl" style="margin: 0 auto;width: 100%;">
+        <form sf-schema="schema" sf-form="form" sf-model="model"></form>
+      </div>
+    </body>
+</html>
