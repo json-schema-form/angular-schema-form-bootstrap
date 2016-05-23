@@ -1,0 +1,44 @@
+{
+  "schema": {
+    "type": "object",
+    "title": "Tab Array: Add Disabled",
+    "properties": {
+      "addDisabledTabArray": {
+        "type": "array",
+        "items": { 
+          "type": "object", 
+          "properties": { 
+            "name": { "type": "string" }, 
+            "nick": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "form": [
+    {
+      "type": "section",
+      "htmlCss": "row",
+      "items": [
+        {
+          "type": "help",
+          "helpvalue": "<h4>Tab array with add link hidden</h4>"
+        },
+        {
+          "key": "addDisabledTabArray",
+          "type": "tabarray",
+          "add": null,
+          "title": "My name is: {{ value.name }}",
+          "sortOptions": {
+            "disabled": true
+          },
+          "items" : [
+            {"key": "addDisabledTabArray[].name", "htmlClass": "nameField"},
+            {"key": "addDisabledTabArray[].nick", "htmlClass": "nickField"}
+          ]
+        }
+      ]
+    }
+  ],
+  "model": {}
+}

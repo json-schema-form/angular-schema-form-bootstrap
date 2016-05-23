@@ -1,15 +1,17 @@
 describe('tab array', function () {
   it('form should exist', function () {
-    browser.get('http://localhost:8080/examples/tabarray.html');
-
-    expect(element(by.css('form')).getInnerHtml()).not.toEqual('');
+    browser.get('http://localhost:8080/examples/bootstrap-example.html');
+    
+    element(by.css('#selectTest')).all(by.cssContainingText('option', 'Tab Array')).first().click().then(function() {
+      expect(element(by.css('form.ng-valid-schema-form')).getInnerHtml()).not.toEqual('');
+    });
   });
 
   it('add link should be hidden', function () {
-    browser.get('http://localhost:8080/examples/tabarray.html');
+    browser.get('http://localhost:8080/examples/bootstrap-example.html');
 
     /* select the add disabled example */
-    element(by.css('[name="exampleSelector"]')).element(by.cssContainingText('option', 'Add Disabled')).click().then(function() {
+    element(by.css('#selectTest')).element(by.cssContainingText('option', 'Tab Array: Add Disabled')).click().then(function() {
 
       /* Add link should not be displayed */
       var tabs = element.all(by.css('.nav-tabs li'));
@@ -27,10 +29,10 @@ describe('tab array', function () {
   });
 
   it('remove button should be hidden', function () {
-    browser.get('http://localhost:8080/examples/tabarray.html');
+    browser.get('http://localhost:8080/examples/bootstrap-example.html');
 
     /* select the remove disabled example */
-    element(by.css('[name="exampleSelector"]')).element(by.cssContainingText('option', 'Remove Disabled')).click().then(function() {
+    element(by.css('#selectTest')).element(by.cssContainingText('option', 'Tab Array: Remove Disabled')).click().then(function() {
       
       /* Remove button should not be displayed */
       var removeButton = element.all(by.partialButtonText('Remove')).get(0);
@@ -48,7 +50,7 @@ describe('tab array', function () {
   });
 
   it('should be able order elements in array by dragging the tabs', function () {
-    browser.get('http://localhost:8080/examples/tabarray.html');
+    browser.get('http://localhost:8080/examples/bootstrap-example.html');
     
     function checkDragDrop(i) {
       browser.driver.wait(protractor.until.elementLocated(by.xpath("//ol/li[1]/a[text()='My name is: Name " + (i + 1) +"']")), 10000);
@@ -70,7 +72,7 @@ describe('tab array', function () {
     }
     
     /* select the sortable example */
-    element(by.css('[name="exampleSelector"]')).element(by.cssContainingText('option', 'Sortable')).click().then(function() {
+    element(by.css('#selectTest')).element(by.cssContainingText('option', 'Tab Array: Sortable')).click().then(function() {
     
       var i;
       var elementsToAdd = 9;
