@@ -51,6 +51,7 @@
     {
       "key": "select2",
       "type": "select",
+      "placeholder": "Please choose",
       "titleMap": {
         "a": "A",
         "b": "B",
@@ -60,6 +61,7 @@
     {
       "key": "noenum",
       "type": "select",
+      "placeholder": "Please choose",
       "titleMap": [
         { "value":"a", "name": "A" },
         { "value":"b", "name":"B" },
