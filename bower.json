@@ -4,9 +4,12 @@
     "David Jensen (Textalk) <david.lgj@gmail.com>"
   ],
   "description": "Bootstrap 3 decorator for Angular Schema Form",
-  "main": "bootstrap-decorator.min.js",
+  "main": "bootstrap-decorator.js",
   "keywords": [
-    "angular-schema-form-decorator"
+    "angular-schema-form-decorator",
+    "json-schema",
+    "json-schema-form",
+    "angular-schema-form"
   ],
   "license": "MIT",
   "homepage": "schemaform.io",
