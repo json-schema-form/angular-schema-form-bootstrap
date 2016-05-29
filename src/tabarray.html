@@ -6,15 +6,16 @@
      class="clearfix schema-form-tabarray schema-form-tabarray-{{form.tabType || 'left'}} {{form.htmlClass}}">
   <div ng-if="!form.tabType || form.tabType !== 'right'"
        ng-class="{'col-xs-3': !form.tabType || form.tabType === 'left'}">
-    <ul class="nav nav-tabs"
-        ng-class="{ 'tabs-left': !form.tabType || form.tabType === 'left'}">
+    <ol class="nav nav-tabs"
+        ng-class="{ 'tabs-left': !form.tabType || form.tabType === 'left'}"
+        sf-field-model ui-sortable="form.sortOptions">
       <li sf-field-model="ng-repeat"
           ng-repeat="item in $$value$$ track by $index"
           ng-click="$event.preventDefault() || (selected.tab = $index)"
           ng-class="{active: selected.tab === $index}">
           <a href="#">{{interp(form.title,{'$index':$index, value: item}) || $index}}</a>
       </li>
-      <li ng-hide="form.readonly"
+      <li ng-hide="form.readonly || form.add === null"
           ng-disabled="form.schema.maxItems <= modelArray.length"
           ng-click="$event.preventDefault() || (selected.tab = appendToArray().length - 1)">
         <a href="#">
@@ -22,7 +23,7 @@
           {{ form.add || 'Add'}}
           </a>
       </li>
-    </ul>
+    </ol>
   </div>
 
   <div ng-class="{'col-xs-9': !form.tabType || form.tabType === 'left' || form.tabType === 'right'}">
@@ -35,7 +36,7 @@
 
            <div schema-form-array-items></div>
 
-           <button ng-hide="form.readonly"
+           <button ng-hide="form.readonly || form.remove === null"
                    ng-click="selected.tab = deleteFromArray($index).length - 1"
                    ng-disabled="form.schema.minItems >= modelArray.length"
                    type="button"
@@ -59,7 +60,7 @@
           ng-class="{active: selected.tab === $index}">
           <a href="#">{{interp(form.title,{'$index':$index, value: item}) || $index}}</a>
       </li>
-      <li ng-hide="form.readonly"
+      <li ng-hide="form.readonly || form.add === null"
           ng-disabled="form.schema.maxItems <= modelArray.length"
           ng-click="$event.preventDefault() || (selected.tab = appendToArray().length - 1)">
         <a href="#">

@@ -1,0 +1,44 @@
+{
+  "schema": {
+    "type": "object",
+    "title": "Tab Array: Remove Disabled",
+    "properties": {
+      "removeDisabledTabArray": {
+        "type": "array",
+        "items": { 
+          "type": "object", 
+          "properties": { 
+            "name": { "type": "string" }, 
+            "nick": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "form": [
+    {
+      "type": "section",
+      "htmlCss": "row",
+      "items": [
+        {
+          "type": "help",
+          "helpvalue": "<h4>Tab array with remove button hidden</h4>"
+        },
+        {
+          "key": "removeDisabledTabArray",
+          "type": "tabarray",
+          "remove": null,
+          "title": "My name is: {{ value.name }}",
+          "sortOptions": {
+            "disabled": true
+          },
+          "items" : [
+            {"key": "removeDisabledTabArray[].name", "htmlClass": "nameField"},
+            {"key": "removeDisabledTabArray[].nick", "htmlClass": "nickField"}
+          ]
+        }
+      ]
+    }
+  ],
+  "model": {}
+}

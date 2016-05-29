@@ -214,9 +214,9 @@
 <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-sanitize.min.js"></script> -->
 
 
-<!--
-<script type="text/javascript" src="../bower_components/angular-ui-sortable/sortable.js"></script>
--->
+<script type="text/javascript" src="../bower_components/angular-ui-sortable/sortable.min.js"></script>
+<script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+
 <script type="text/javascript" src="../bower_components/angular-ui-ace/ui-ace.js"></script>
 <script type="text/javascript" src="../bower_components/objectpath/lib/ObjectPath.js"></script>
 <script type="text/javascript" src="../bower_components/pickadate/lib/picker.js"></script>
@@ -254,6 +254,9 @@ app.controller('TestCtrl', function($scope, $http, $location) {
     { name: "TitleMap Examples", data: 'data/titlemaps.json' },
     { name: "Kitchen Sink", data: 'data/sink.json' },
     { name: "Hack: Conditional required", data: 'data/conditional-required.json' },
+    { name: "Tab Array: Add Disabled", data: 'data/tabarray-add-disabled.json' },
+    { name: "Tab Array: Remove Disabled", data: 'data/tabarray-remove-disabled.json' },
+    { name: "Tab Array: Sortable (Drag and Drop)", data: 'data/tabarray-sortable.json' }
   ];
 
   $scope.navbarMode = 'default';

@@ -1,0 +1,40 @@
+{
+  "schema": {
+    "type": "object",
+    "title": "Tab Array: Sortable (Drag and Drop)",
+    "properties": {
+      "sortableTabArray": {
+        "type": "array",
+        "items": { 
+          "type": "object", 
+          "properties": { 
+            "name": { "type": "string" }, 
+            "nick": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "form": [
+    {
+      "type": "section",
+      "htmlCss": "row",
+      "items": [
+        {
+          "type": "help",
+          "helpvalue": "<h4>Drag and drop sortable tab array</h4>"
+        },
+        {
+          "key": "sortableTabArray",
+          "type": "tabarray",
+          "title": "My name is: {{ value.name }}",
+          "items" : [
+            {"key": "sortableTabArray[].name", "htmlClass": "nameField"},
+            {"key": "sortableTabArray[].nick", "htmlClass": "nickField"}
+          ]
+        }
+      ]
+    }
+  ],
+  "model": {}
+}

@@ -27,7 +27,7 @@ gulp.task('protractor', ['webdriver-update'], function(cb) {
   }).on('end', cb);
 });
 
-['validation-messages', 'custom-validation'].forEach(function(name) {
+['validation-messages', 'custom-validation', 'tabarray'].forEach(function(name) {
   gulp.task('protractor:' + name, ['webdriver-update'], function(cb) {
     gulp.src(['test/protractor/specs/' + name + '.js']).pipe(protractor.protractor({
       configFile: 'test/protractor/conf.js',
