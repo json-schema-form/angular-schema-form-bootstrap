@@ -1,7 +1,7 @@
 Angular Bootstrap Decorator
 ==========================
 
-For https://github.com/Textalk/angular-schema-form
+For https://github.com/json-schema-form/angular-schema-form
 
 This is the new Bootstrap Decorator! That means a Bootstrap 3 frontend for the Angular Schema Form
 project. The former Bootstrap decorator used to be included in the main repo, but has now moved
