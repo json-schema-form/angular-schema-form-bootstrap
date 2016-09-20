@@ -6,7 +6,7 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   uglify = require('gulp-uglify');
 
-gulp.task('minify', function() {
+gulp.task('templates', function() {
   var stream = streamqueue({objectMode: true});
   stream.queue(
     gulp.src('./src/**/*.html')
@@ -20,7 +20,6 @@ gulp.task('minify', function() {
       root: 'decorators/bootstrap/'
     }))
     );
-  stream.queue(gulp.src('./src/**/*.js'));
 
   stream.done()
   .pipe(rename('angular-schema-form-bootstrap-templates.js'))

@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'dist' ]
+2 info using npm@3.8.3
+3 info using node@v5.10.1
+4 verbose run-script [ 'predist', 'dist', 'postdist' ]
+5 info lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~predist: angular-schema-form-bootstrap@1.0.0-alpha.1
+6 silly lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~predist: no script for predist, continuing
+7 info lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~dist: angular-schema-form-bootstrap@1.0.0-alpha.1
+8 verbose lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~dist: unsafe-perm in lifecycle true
+9 verbose lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~dist: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Marcel\Documents\SERIOUS\git\angular-schema-form-bootstrap\node_modules\.bin;C:\Program Files\nodejs;C:\Program Files\ConEmu\ConEmu\Scripts;C:\Program Files\ConEmu\ConEmu\Scripts;C:\Program Files\ConEmu;C:\Program Files\ConEmu\ConEmu;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;c:\Program Files (x86)\Intel\iCLS Client\;c:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\NpackdCL-1;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\MSysGit\bin;C:\Program Files\TortoiseGit_64_bit\bin;C:\Program Files\TortoiseHg_64_bit\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\nodejs\;C:\Users\Marcel\AppData\Local\atom\bin;C:\Users\Marcel\AppData\Roaming\npm
+10 verbose lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~dist: CWD: C:\Users\Marcel\Documents\SERIOUS\git\angular-schema-form-bootstrap
+11 silly lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~dist: Args: [ '/d /s /c', 'npm run build && npm run minify' ]
+12 silly lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~dist: Returned: code: 1  signal: null
+13 info lifecycle angular-schema-form-bootstrap@1.0.0-alpha.1~dist: Failed to exec dist script
+14 verbose stack Error: angular-schema-form-bootstrap@1.0.0-alpha.1 dist: `npm run build && npm run minify`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:239:16)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at EventEmitter.emit (events.js:185:7)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:24:14)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at ChildProcess.emit (events.js:185:7)
+14 verbose stack     at maybeClose (internal/child_process.js:850:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+15 verbose pkgid angular-schema-form-bootstrap@1.0.0-alpha.1
+16 verbose cwd C:\Users\Marcel\Documents\SERIOUS\git\angular-schema-form-bootstrap
+17 error Windows_NT 10.0.10586
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "dist"
+19 error node v5.10.1
+20 error npm  v3.8.3
+21 error code ELIFECYCLE
+22 error angular-schema-form-bootstrap@1.0.0-alpha.1 dist: `npm run build && npm run minify`
+22 error Exit status 1
+23 error Failed at the angular-schema-form-bootstrap@1.0.0-alpha.1 dist script 'npm run build && npm run minify'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the angular-schema-form-bootstrap package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     npm run build && npm run minify
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs angular-schema-form-bootstrap
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls angular-schema-form-bootstrap
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

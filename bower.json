@@ -1,10 +1,12 @@
 {
   "name": "angular-schema-form-bootstrap",
+  "version": "1.0.0-alpha.1",
   "authors": [
-    "David Jensen (Textalk) <david.lgj@gmail.com>"
+    "David Jensen (Textalk) <david.lgj@gmail.com>",
+    "Marcel Bennett <iamanthropic@gmail.com>"
   ],
   "description": "Bootstrap 3 decorator for Angular Schema Form",
-  "main": "bootstrap-decorator.js",
+  "main": "dist/bootstrap-decorator.js",
   "keywords": [
     "angular-schema-form-decorator",
     "json-schema",
@@ -21,7 +23,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-schema-form": ">= 0.8.7"
+    "angular-schema-form": ">=0.8.13"
   },
   "devDependencies": {
     "angular-ui-ace": "bower",
