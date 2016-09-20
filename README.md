@@ -23,12 +23,23 @@ or
 ```sh
 npm install angular-schema-form-bootstrap
 ```
+And then include `angular-schema-form-bootstrap.min.js`. Note that angular-schema-form >= 1.0.0-alpha.1 is needed.
 
-And then include `bootstrap-decorator.min.js`. Note that angular-schema-form >= 0.8.7 is needed.
-
+You **DO NOT** need to include angular-schema-form with this version, it is now embedded within the above file.
 
 Future
 ------
 Using the new builder opens up for a lot of optimization. Primarily we can get rid of a lot of small
 watches by using build helpers. For instance, slapping on a `sf-changed` directive *only* if the
 form definition has an `onChange` option.
+
+We also intend to provide a version that can be added as just the decorator without including Angular Schema Form.
+
+Developer Install
+-----------------
+```sh
+bower install
+npm install
+```
+Then read package.json for the available scripts.
+**Note** templates are compiled so the templates script must be run after changes.
