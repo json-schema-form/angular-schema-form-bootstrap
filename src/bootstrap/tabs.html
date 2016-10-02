@@ -3,7 +3,8 @@
     <li ng-repeat="tab in form.tabs"
         ng-disabled="form.readonly"
         ng-click="$event.preventDefault() || (selected.tab = $index)"
-        ng-class="{active: selected.tab === $index}">
+        ng-class="{active: selected.tab === $index}"
+        ng-if="(!tab.condition || evalExpr(tab.condition, { model: model, arrayIndex: $index}))">
         <a href="#">{{ tab.title }}</a>
     </li>
   </ul>
