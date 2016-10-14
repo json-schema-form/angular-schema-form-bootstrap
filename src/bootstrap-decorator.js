@@ -90,26 +90,26 @@ function bootstrapDecoratorConfig(
 
   var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
-    textarea: {template: textareaTemplate, builder: defaults},
-    fieldset: {template: fieldsetTemplate, builder: [sfField, simpleTransclusion, condition]},
-    array: {template: arrayTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    tabarray: {template: tabarrayTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    tabs: {template: tabsTemplate, builder: [sfField, ngModelOptions, tabs, condition]},
-    section: {template: sectionTemplate, builder: [sfField, simpleTransclusion, condition]},
-    conditional: {template: sectionTemplate, builder: [sfField, simpleTransclusion, condition]},
     actions: {template: actionsTemplate, builder: defaults},
-    select: {template: selectTemplate, builder: defaults.concat(selectPlaceholder)},
+    array: {template: arrayTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    button: {template: submitTemplate, builder: defaults},
     checkbox: {template: checkboxTemplate, builder: defaults},
     checkboxes: {template: checkboxesTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    conditional: {template: sectionTemplate, builder: [sfField, simpleTransclusion, condition]},
+    'default': {template: defaultTemplate, builder: defaults}
+    fieldset: {template: fieldsetTemplate, builder: [sfField, simpleTransclusion, condition]},
+    help: {template: helpTemplate, builder: defaults},
     number: {template: defaultTemplate, builder: defaults.concat(numeric)},
     password: {template: defaultTemplate, builder: defaults},
-    submit: {template: submitTemplate, builder: defaults},
-    button: {template: submitTemplate, builder: defaults},
     radios: {template: radiosTemplate, builder: defaults},
     'radios-inline': {template: radiosInlineTemplate, builder: defaults},
     radiobuttons: {template: radiobuttonsTemplate, builder: defaults},
-    help: {template: helpTemplate, builder: defaults},
-    'default': {template: defaultTemplate, builder: defaults}
+    section: {template: sectionTemplate, builder: [sfField, simpleTransclusion, condition]},
+    select: {template: selectTemplate, builder: defaults.concat(selectPlaceholder)},
+    submit: {template: submitTemplate, builder: defaults},
+    tabarray: {template: tabarrayTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    tabs: {template: tabsTemplate, builder: [sfField, ngModelOptions, tabs, condition]},
+    textarea: {template: textareaTemplate, builder: defaults},
   }, []);
 };
 
