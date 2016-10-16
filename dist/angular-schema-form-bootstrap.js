@@ -61,9 +61,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	__webpack_require__(1);
-	//require('./angular-schema-form-bootstrap-templates.js');
-	//require('./type-parser.js');
 	__webpack_require__(2);
 
 /***/ },
@@ -3666,23 +3666,25 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	// angular-templatecache-loader
-	let textareaTemplate = __webpack_require__(18);
-	let fieldsetTemplate = __webpack_require__(8);
-	let arrayTemplate = __webpack_require__(4);
-	let tabarrayTemplate = __webpack_require__(16);
-	let tabsTemplate = __webpack_require__(17);
-	let sectionTemplate = __webpack_require__(13);
-	let actionsTemplate = __webpack_require__(3);
-	let selectTemplate = __webpack_require__(14);
-	let checkboxTemplate = __webpack_require__(5);
-	let checkboxesTemplate = __webpack_require__(6);
-	let submitTemplate = __webpack_require__(15);
-	let radiosTemplate = __webpack_require__(12);
-	let radiosInlineTemplate = __webpack_require__(11);
-	let radiobuttonsTemplate = __webpack_require__(10);
-	let helpTemplate = __webpack_require__(9);
-	let defaultTemplate = __webpack_require__(7);
+	var textareaTemplate = __webpack_require__(18);
+	var fieldsetTemplate = __webpack_require__(8);
+	var arrayTemplate = __webpack_require__(4);
+	var tabarrayTemplate = __webpack_require__(16);
+	var tabsTemplate = __webpack_require__(17);
+	var sectionTemplate = __webpack_require__(13);
+	var actionsTemplate = __webpack_require__(3);
+	var selectTemplate = __webpack_require__(14);
+	var checkboxTemplate = __webpack_require__(5);
+	var checkboxesTemplate = __webpack_require__(6);
+	var submitTemplate = __webpack_require__(15);
+	var radiosTemplate = __webpack_require__(12);
+	var radiosInlineTemplate = __webpack_require__(11);
+	var radiobuttonsTemplate = __webpack_require__(10);
+	var helpTemplate = __webpack_require__(9);
+	var defaultTemplate = __webpack_require__(7);
 
 	angular.module('schemaForm').config(bootstrapDecoratorConfig).filter('sfCamelKey', sfCamelKeyFilter);
 
@@ -3700,7 +3702,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var numeric = sfBuilderProvider.builders.numeric;
 
 	  // Tabs is so bootstrap specific that it stays here.
-	  var tabs = function (args) {
+	  var tabs = function tabs(args) {
 	    if (args.form.tabs && args.form.tabs.length > 0) {
 	      var tabContent = args.fieldFrag.querySelector('.tab-content');
 
@@ -3722,7 +3724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  };
 
-	  var selectPlaceholder = function (args) {
+	  var selectPlaceholder = function selectPlaceholder(args) {
 	    if (args.form.placeholder) {
 	      var selectBox = args.fieldFrag.querySelector('select');
 	      var option = document.createElement('option');
@@ -3917,7 +3919,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = 'bootstrap/tabarray.html';
-	var html = "\r\n<div ng-init=\"selected = { tab: 0 }\"\r\n     ng-model=\"modelArray\" schema-validate=\"form\"\r\n     sf-field-model=\"sf-new-array\"\r\n     sf-new-array\r\n     class=\"clearfix schema-form-tabarray schema-form-tabarray-{{form.tabType || 'left'}} {{form.htmlClass}}\">\r\n  <div ng-if=\"!form.tabType || form.tabType !== 'right'\"\r\n       ng-class=\"{'col-xs-3': !form.tabType || form.tabType === 'left'}\">\r\n    <ol class=\"nav nav-tabs\"\r\n        ng-class=\"{ 'tabs-left': !form.tabType || form.tabType === 'left'}\"\r\n        sf-field-model ui-sortable=\"form.sortOptions\">\r\n      <li sf-field-model=\"ng-repeat\"\r\n          ng-repeat=\"item in $$value$$ track by $index\"\r\n          ng-click=\"$event.preventDefault() || (selected.tab = $index)\"\r\n          ng-class=\"{active: selected.tab === $index}\">\r\n          <a href=\"#\">{{interp(form.title,{'$index':$index, value: item}) || $index}}</a>\r\n      </li>\r\n      <li ng-hide=\"form.readonly || form.add === null\"\r\n          ng-disabled=\"form.schema.maxItems <= modelArray.length\"\r\n          ng-click=\"$event.preventDefault() || (selected.tab = appendToArray().length - 1)\">\r\n        <a href=\"#\">\r\n          <i class=\"glyphicon glyphicon-plus\"></i>\r\n          {{ form.add || 'Add'}}\r\n          </a>\r\n      </li>\r\n    </ol>\r\n  </div>\r\n\r\n  <div ng-class=\"{'col-xs-9': !form.tabType || form.tabType === 'left' || form.tabType === 'right'}\">\r\n    <div class=\"tab-content {{form.fieldHtmlClass}}\">\r\n      <div class=\"tab-pane clearfix tab{{selected.tab}} index{{$index}}\"\r\n           sf-field-model=\"ng-repeat\"\r\n           ng-repeat=\"item in $$value$$ track by $index\"\r\n           ng-show=\"selected.tab === $index\"\r\n           ng-class=\"{active: selected.tab === $index}\">\r\n\r\n           <div schema-form-array-items></div>\r\n\r\n           <button ng-hide=\"form.readonly || form.remove === null\"\r\n                   ng-click=\"selected.tab = deleteFromArray($index).length - 1\"\r\n                   ng-disabled=\"form.schema.minItems >= modelArray.length\"\r\n                   type=\"button\"\r\n                   class=\"btn {{ form.style.remove || 'btn-default' }} pull-right\">\r\n             <i class=\"glyphicon glyphicon-trash\"></i>\r\n             {{ form.remove || 'Remove'}}\r\n           </button>\r\n      </div>\r\n      <div class=\"help-block\"\r\n           ng-show=\"(hasError() && errorMessage(schemaError())) || form.description\"\r\n           ng-bind-html=\"(hasError() && errorMessage(schemaError())) || form.description\"></div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div ng-if=\"form.tabType === 'right'\" class=\"col-xs-3\">\r\n    <ul class=\"nav nav-tabs tabs-right\">\r\n      <li  sf-field-model=\"ng-repeat\"\r\n          ng-repeat=\"item in $$value$$ track by $index\"\r\n          ng-click=\"$event.preventDefault() || (selected.tab = $index)\"\r\n          ng-class=\"{active: selected.tab === $index}\">\r\n          <a href=\"#\">{{interp(form.title,{'$index':$index, value: item}) || $index}}</a>\r\n      </li>\r\n      <li ng-hide=\"form.readonly || form.add === null\"\r\n          ng-disabled=\"form.schema.maxItems <= modelArray.length\"\r\n          ng-click=\"$event.preventDefault() || (selected.tab = appendToArray().length - 1)\">\r\n        <a href=\"#\">\r\n          <i class=\"glyphicon glyphicon-plus\"></i>\r\n          {{ form.add || 'Add'}}\r\n          </a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n</div>\r\n";
+	var html = "<div ng-init=\"selected = { tab: 0 }\"\r\n     ng-model=\"modelArray\" schema-validate=\"form\"\r\n     sf-field-model=\"sf-new-array\"\r\n     sf-new-array\r\n     class=\"clearfix schema-form-tabarray schema-form-tabarray-{{form.tabType || 'left'}} {{form.htmlClass}}\">\r\n  <div ng-if=\"!form.tabType || form.tabType !== 'right'\"\r\n       ng-class=\"{'col-xs-3': !form.tabType || form.tabType === 'left'}\">\r\n    <ol class=\"nav nav-tabs\"\r\n        ng-class=\"{ 'tabs-left': !form.tabType || form.tabType === 'left'}\"\r\n        sf-field-model ui-sortable=\"form.sortOptions\">\r\n      <li sf-field-model=\"ng-repeat\"\r\n          ng-repeat=\"item in $$value$$ track by $index\"\r\n          ng-click=\"$event.preventDefault() || (selected.tab = $index)\"\r\n          ng-class=\"{active: selected.tab === $index}\">\r\n          <a href=\"#\">{{interp(form.title,{'$index':$index, value: item}) || $index}}</a>\r\n      </li>\r\n      <li ng-hide=\"form.readonly || form.add === null\"\r\n          ng-disabled=\"form.schema.maxItems <= modelArray.length\"\r\n          ng-click=\"$event.preventDefault() || (selected.tab = appendToArray().length - 1)\">\r\n        <a href=\"#\">\r\n          <i class=\"glyphicon glyphicon-plus\"></i>\r\n          {{ form.add || 'Add'}}\r\n          </a>\r\n      </li>\r\n    </ol>\r\n  </div>\r\n\r\n  <div ng-class=\"{'col-xs-9': !form.tabType || form.tabType === 'left' || form.tabType === 'right'}\">\r\n    <div class=\"tab-content {{form.fieldHtmlClass}}\">\r\n      <div class=\"tab-pane clearfix tab{{selected.tab}} index{{$index}}\"\r\n           sf-field-model=\"ng-repeat\"\r\n           ng-repeat=\"item in $$value$$ track by $index\"\r\n           ng-show=\"selected.tab === $index\"\r\n           ng-class=\"{active: selected.tab === $index}\">\r\n\r\n           <div schema-form-array-items></div>\r\n\r\n           <button ng-hide=\"form.readonly || form.remove === null\"\r\n                   ng-click=\"selected.tab = deleteFromArray($index).length - 1\"\r\n                   ng-disabled=\"form.schema.minItems >= modelArray.length\"\r\n                   type=\"button\"\r\n                   class=\"btn {{ form.style.remove || 'btn-default' }} pull-right\">\r\n             <i class=\"glyphicon glyphicon-trash\"></i>\r\n             {{ form.remove || 'Remove'}}\r\n           </button>\r\n      </div>\r\n      <div class=\"help-block\"\r\n           ng-show=\"(hasError() && errorMessage(schemaError())) || form.description\"\r\n           ng-bind-html=\"(hasError() && errorMessage(schemaError())) || form.description\"></div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div ng-if=\"form.tabType === 'right'\" class=\"col-xs-3\">\r\n    <ul class=\"nav nav-tabs tabs-right\">\r\n      <li  sf-field-model=\"ng-repeat\"\r\n          ng-repeat=\"item in $$value$$ track by $index\"\r\n          ng-click=\"$event.preventDefault() || (selected.tab = $index)\"\r\n          ng-class=\"{active: selected.tab === $index}\">\r\n          <a href=\"#\">{{interp(form.title,{'$index':$index, value: item}) || $index}}</a>\r\n      </li>\r\n      <li ng-hide=\"form.readonly || form.add === null\"\r\n          ng-disabled=\"form.schema.maxItems <= modelArray.length\"\r\n          ng-click=\"$event.preventDefault() || (selected.tab = appendToArray().length - 1)\">\r\n        <a href=\"#\">\r\n          <i class=\"glyphicon glyphicon-plus\"></i>\r\n          {{ form.add || 'Add'}}\r\n          </a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -3926,7 +3928,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = 'bootstrap/tabs.html';
-	var html = "<div ng-init=\"selected = { tab: 0 }\" class=\"schema-form-tabs {{form.htmlClass}}\">\r\n  <ul class=\"nav nav-tabs\">\r\n    <li ng-repeat=\"tab in form.tabs\"\r\n        ng-disabled=\"form.readonly\"\r\n        ng-click=\"$event.preventDefault() || (selected.tab = $index)\"\r\n        ng-class=\"{active: selected.tab === $index}\"\r\n        ng-if=\"(!tab.condition || evalExpr(tab.condition, { model: model, arrayIndex: $index}))\">\r\n        <a href=\"#\">{{ tab.title }}</a>\r\n    </li>\r\n  </ul>\r\n\r\n  <div class=\"tab-content {{form.fieldHtmlClass}}\">\r\n  </div>\r\n</div>\r\n";
+	var html = "<div ng-init=\"selected = { tab: 0 }\" class=\"schema-form-tabs {{form.htmlClass}}\">\r\n  <ul class=\"nav nav-tabs\">\r\n    <li ng-repeat=\"tab in form.tabs\"\r\n        ng-disabled=\"form.readonly\"\r\n        ng-click=\"$event.preventDefault() || (selected.tab = $index)\"\r\n        ng-class=\"{active: selected.tab === $index}\">\r\n        <a href=\"#\">{{ tab.title }}</a>\r\n    </li>\r\n  </ul>\r\n\r\n  <div class=\"tab-content {{form.fieldHtmlClass}}\">\r\n  </div>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 

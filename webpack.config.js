@@ -1,9 +1,9 @@
 /* global __dirname */
+//const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
-//const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const getPath = (pathToFile) => path.resolve(__dirname, pathToFile);
 const pjson = require('./package.json');
 console.log('Angular Schema Form Bootstrap v' + pjson.version);

@@ -2,7 +2,7 @@
      ng-model="modelArray" schema-validate="form"
      sf-field-model="sf-new-array"
      sf-new-array
-     class="clearfix schema-form-tabarray schema-form-tabarray-{{form.tabType || 'left'}} {{form.htmlClass}}">
+     class="clearfix schema-form-tabarray schema-form-tabarray-{{form.tabType || 'left'}} {{::form.htmlClass}}">
   <div ng-if="!form.tabType || form.tabType !== 'right'"
        ng-class="{'col-xs-3': !form.tabType || form.tabType === 'left'}">
     <ol class="nav nav-tabs"
@@ -26,7 +26,7 @@
   </div>
 
   <div ng-class="{'col-xs-9': !form.tabType || form.tabType === 'left' || form.tabType === 'right'}">
-    <div class="tab-content {{form.fieldHtmlClass}}">
+    <div class="tab-content {{::form.fieldHtmlClass}}">
       <div class="tab-pane clearfix tab{{selected.tab}} index{{$index}}"
            sf-field-model="ng-repeat"
            ng-repeat="item in $$value$$ track by $index"

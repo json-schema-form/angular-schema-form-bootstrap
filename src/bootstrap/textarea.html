@@ -1,11 +1,11 @@
-<div class="form-group has-feedback {{form.htmlClass}} schema-form-textarea" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
-  <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">{{form.title}}</label>
+<div class="form-group has-feedback {{::form.htmlClass}} schema-form-textarea" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
+  <label class="control-label {{::form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">{{form.title}}</label>
 
   <textarea ng-if="!form.fieldAddonLeft && !form.fieldAddonRight"
-            class="form-control {{form.fieldHtmlClass}}"
+            class="form-control {{::form.fieldHtmlClass}}"
             id="{{form.key.slice(-1)[0]}}"
             sf-changed="form"
-            placeholder="{{form.placeholder}}"
+            ng-attr-placeholder="{{::form.placeholder}}"
             ng-disabled="form.readonly"
             sf-field-model
             schema-validate="form"
@@ -16,10 +16,10 @@
     <span ng-if="form.fieldAddonLeft"
           class="input-group-addon"
           ng-bind-html="form.fieldAddonLeft"></span>
-    <textarea class="form-control {{form.fieldHtmlClass}}"
+    <textarea class="form-control {{::form.fieldHtmlClass}}"
               id="{{form.key.slice(-1)[0]}}"
               sf-changed="form"
-              placeholder="{{form.placeholder}}"
+              ng-attr-placeholder="{{::form.placeholder}}"
               ng-disabled="form.readonly"
               sf-field-model
               schema-validate="form"
