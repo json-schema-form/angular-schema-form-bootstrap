@@ -4,7 +4,6 @@
   <label class="control-label" ng-show="showTitle()">{{ form.title }}</label>
   <ol class="list-group" sf-field-model ui-sortable="form.sortOptions">
     <li class="list-group-item {{form.fieldHtmlClass}}"
-        schema-form-array-items
         sf-field-model="ng-repeat"
         ng-repeat="item in $$value$$ track by $index">
       <button ng-hide="form.readonly || form.remove === null"
@@ -14,6 +13,7 @@
               type="button" class="close pull-right">
               <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
       </button>
+      <div schema-form-array-items sf-key-controller sf-parent-key="[{{form.key.join('][')}}]" sf-index="{{$index}}"></div>
     </li>
   </ol>
   <div class="clearfix" style="padding: 15px;" ng-model="modelArray" schema-validate="form">
