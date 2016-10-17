@@ -33,7 +33,7 @@
            ng-show="selected.tab === $index"
            ng-class="{active: selected.tab === $index}">
 
-           <div schema-form-array-items></div>
+           <div schema-form-array-items sf-key-controller sf-parent-key="[{{form.key.join('][')}}]" sf-index="{{$index}}"></div>
 
            <button ng-hide="form.readonly || form.remove === null"
                    ng-click="selected.tab = deleteFromArray($index).length - 1"
