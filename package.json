@@ -7,7 +7,7 @@
     "dist": "npm run build && npm run minify",
     "build": "webpack",
     "watch": "webpack --watch",
-    "minify": "uglifyjs dist/angular-schema-form-bootstrap.js --comments --output=dist/angular-schema-form-bootstrap.min.js",
+    "minify": "uglifyjs dist/angular-schema-form-bootstrap.js --comments --output=dist/angular-schema-form-bootstrap.min.js && uglifyjs dist/angular-schema-form-bootstrap-bundled.js --comments --output=dist/angular-schema-form-bootstrap-bundled.min.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-not-yet-done": "karma start --single-run --browsers PhantomJS karma.conf.js --log-level info"
   },
@@ -28,9 +28,10 @@
     "tv4": "~1.0.15"
   },
   "devDependencies": {
-    "babel-core": "^6.10.4",
+    "babel": "^6.5.2",
+    "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
-    "babel-polyfill": "^6.9.1",
+    "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.0",

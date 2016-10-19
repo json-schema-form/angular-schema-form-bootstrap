@@ -96,7 +96,7 @@ function bootstrapDecoratorConfig(
     checkbox: {template: checkboxTemplate, builder: defaults},
     checkboxes: {template: checkboxesTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
     conditional: {template: sectionTemplate, builder: [sfField, simpleTransclusion, condition]},
-    'default': {template: defaultTemplate, builder: defaults}
+    'default': {template: defaultTemplate, builder: defaults},
     fieldset: {template: fieldsetTemplate, builder: [sfField, simpleTransclusion, condition]},
     help: {template: helpTemplate, builder: defaults},
     number: {template: defaultTemplate, builder: defaults.concat(numeric)},

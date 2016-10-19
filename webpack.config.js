@@ -3,26 +3,20 @@
 //const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const HtmlWebpackPlugin = require('html-webpack-plugin');
 const getPath = (pathToFile) => path.resolve(__dirname, pathToFile);
 const pjson = require('./package.json');
 console.log('Angular Schema Form Bootstrap v' + pjson.version);
 
 module.exports = {
-  entry: './src/module.js',
-  // entry: {
-  //   schema_form_decorators: [
-  //     getPath('./src/bootstrap-decorator.js'),
-  //   ]
-  //   // ,
-  //   // app: [
-  //   //   getPath('./src/app.js'),
-  //   //   getPath('./src/config/dev.config.js')
-  //   // ]
-  // },
+  // entry: './src/module.js',
+  entry: {
+    'angular-schema-form-bootstrap': getPath('./src/module.js'),
+    'angular-schema-form-bootstrap-bundled': getPath('./src/module-bundled.js'),
+  },
   output: {
     path: getPath('./dist'),
-    filename: 'angular-schema-form-bootstrap.js',
+    filename: '[name].js',
     sourceMapFilename: '[name].map',
     libraryTarget: 'umd'
   },
