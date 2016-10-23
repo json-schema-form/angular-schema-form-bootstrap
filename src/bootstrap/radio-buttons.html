@@ -15,7 +15,7 @@
              sf-field-model
              schema-validate="form"
              ng-value="item.value"
-             name="{{form.key.join('.')}}">
+             name="{{::fieldId(true)}}">
       <span ng-bind-html="item.name"></span>
     </label>
   </div>

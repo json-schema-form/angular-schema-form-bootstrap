@@ -10,7 +10,7 @@
              ng-disabled="form.readonly"
              sf-field-model
              ng-value="item.value"
-             name="{{form.key.join('.')}}">
+             name="{{::fieldId(true)}}">
       <span ng-bind-html="item.name"></span>
     </label>
   </div>

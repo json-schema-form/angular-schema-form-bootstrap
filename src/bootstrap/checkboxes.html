@@ -14,7 +14,7 @@
              sf-changed="form"
              class="{{::form.fieldHtmlClass}}"
              ng-model="titleMapValues[$index]"
-             name="{{form.key.slice(-1)[0]}}">
+             name="{{::fieldId(true, false)}}">
       <span ng-bind-html="form.titleMap[$index].name"></span>
     </label>
 
