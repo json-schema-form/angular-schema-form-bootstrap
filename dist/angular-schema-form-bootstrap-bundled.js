@@ -251,7 +251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = 'bootstrap/fieldset.html';
-	var html = "<fieldset ng-disabled=\"form.readonly\" class=\"schema-form-fieldset {{::form.htmlClass}}\">\r\n  <legend ng-class=\"{'sr-only': !showTitle() }\">{{ form.title }}</legend>\r\n  <div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div>\r\n</fieldset>\r\n";
+	var html = "<fieldset ng-disabled=\"form.readonly\" class=\"schema-form-fieldset {{::form.htmlClass}}\" sf-key-controller sf-parent-key=\"[{{form.key.join('][')}}]\" sf-index=\"{{$index}}\">\r\n  <legend ng-class=\"{'sr-only': !showTitle() }\">{{ form.title }}</legend>\r\n  <div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div>\r\n</fieldset>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -269,7 +269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = 'bootstrap/radio-buttons.html';
-	var html = "<div class=\"form-group schema-form-radiobuttons {{::form.htmlClass}}\"\r\n     ng-class=\"{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}\">\r\n  <div>\r\n    <label class=\"control-label {{::form.labelHtmlClass}}\" ng-show=\"showTitle()\">{{form.title}}</label>\r\n  </div>\r\n  <div class=\"btn-group\">\r\n    <label sf-field-model=\"replaceAll\" class=\"btn {{ (item.value === $$value$$) ? form.style.selected || 'btn-default' : form.style.unselected || 'btn-default'; }}\"\r\n           ng-class=\"{ active: item.value === $$value$$ }\"\r\n           ng-repeat=\"item in form.titleMap\">\r\n      <input type=\"radio\"\r\n             class=\"{{::form.fieldHtmlClass}}\"\r\n             sf-changed=\"form\"\r\n             style=\"display: none;\"\r\n             ng-disabled=\"form.readonly\"\r\n             sf-field-model\r\n             schema-validate=\"form\"\r\n             ng-value=\"item.value\"\r\n             name=\"{{form.key.join('.')}}\">\r\n      <span ng-bind-html=\"item.name\"></span>\r\n    </label>\r\n  </div>\r\n  <div class=\"help-block\" sf-message=\"form.description\"></div>\r\n</div>\r\n";
+	var html = "<div class=\"form-group schema-form-radiobuttons {{::form.htmlClass}}\"\r\n     ng-class=\"{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}\">\r\n  <div>\r\n    <label class=\"control-label {{::form.labelHtmlClass}}\" ng-show=\"showTitle()\">{{form.title}}</label>\r\n  </div>\r\n  <div class=\"btn-group\">\r\n    <label sf-field-model=\"replaceAll\" class=\"btn {{ (tm.value === $$value$$) ? form.style.selected || 'btn-default' : form.style.unselected || 'btn-default'; }}\"\r\n           ng-class=\"{ active: tm.value === $$value$$ }\"\r\n           ng-repeat=\"tm in form.titleMap\">\r\n      <input type=\"radio\"\r\n             class=\"{{::form.fieldHtmlClass}}\"\r\n             sf-changed=\"form\"\r\n             style=\"display: none;\"\r\n             ng-disabled=\"form.readonly\"\r\n             sf-field-model\r\n             schema-validate=\"form\"\r\n             ng-value=\"tm.value\"\r\n             name=\"{{::fieldId(true, false)}}\">\r\n      <span ng-bind-html=\"tm.name\"></span>\r\n    </label>\r\n  </div>\r\n  <div class=\"help-block\" sf-message=\"form.description\"></div>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -278,7 +278,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = 'bootstrap/radios-inline.html';
-	var html = "<div class=\"form-group schema-form-radios-inline {{::form.htmlClass}}\"\r\n     ng-class=\"{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess()}\">\r\n  <label class=\"control-label {{::form.labelHtmlClass}}\"\r\n        ng-show=\"showTitle()\" sf-field-model\r\n        schema-validate=\"form\" >{{form.title}}</label>\r\n  <div>\r\n      <label class=\"radio-inline\" ng-repeat=\"item in form.titleMap\" >\r\n      <input type=\"radio\"\r\n             class=\"{{::form.fieldHtmlClass}}\"\r\n             sf-changed=\"form\"\r\n             ng-disabled=\"form.readonly\"\r\n             sf-field-model\r\n             ng-value=\"item.value\"\r\n             name=\"{{form.key.join('.')}}\">\r\n      <span ng-bind-html=\"item.name\"></span>\r\n    </label>\r\n  </div>\r\n  <div class=\"help-block\" sf-message=\"form.description\"></div>\r\n</div>\r\n";
+	var html = "<div class=\"form-group schema-form-radios-inline {{::form.htmlClass}}\"\r\n     ng-class=\"{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess()}\">\r\n  <label class=\"control-label {{::form.labelHtmlClass}}\"\r\n        ng-show=\"showTitle()\" sf-field-model\r\n        schema-validate=\"form\" >{{form.title}}</label>\r\n  <div>\r\n      <label class=\"radio-inline\" ng-repeat=\"tm in form.titleMap\" >\r\n      <input type=\"radio\"\r\n             class=\"{{::form.fieldHtmlClass}}\"\r\n             sf-changed=\"form\"\r\n             ng-disabled=\"form.readonly\"\r\n             sf-field-model\r\n             ng-value=\"tm.value\"\r\n             name=\"{{::fieldId(true, false)}}\">\r\n      <span ng-bind-html=\"tm.name\"></span>\r\n    </label>\r\n  </div>\r\n  <div class=\"help-block\" sf-message=\"form.description\"></div>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -287,7 +287,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = 'bootstrap/radios.html';
-	var html = "<div class=\"form-group schema-form-radios {{::form.htmlClass}}\" ng-class=\"{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess()}\">\r\n  <label class=\"control-label {{::form.labelHtmlClass}}\"\r\n         sf-field-model schema-validate=\"form\"\r\n         ng-show=\"showTitle()\">{{form.title}}</label>\r\n  <div class=\"radio\" ng-repeat=\"item in form.titleMap\">\r\n    <label>\r\n      <input type=\"radio\"\r\n             class=\"{{::form.fieldHtmlClass}}\"\r\n             sf-changed=\"form\"\r\n             ng-disabled=\"form.readonly\"\r\n             sf-field-model\r\n             ng-value=\"item.value\"\r\n             name=\"{{form.key.join('.')}}\">\r\n      <span ng-bind-html=\"item.name\"></span>\r\n    </label>\r\n  </div>\r\n  <div class=\"help-block\" sf-message=\"form.description\"></div>\r\n</div>\r\n";
+	var html = "<div class=\"form-group schema-form-radios {{::form.htmlClass}}\" ng-class=\"{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess()}\">\r\n  <label class=\"control-label {{::form.labelHtmlClass}}\"\r\n         sf-field-model schema-validate=\"form\"\r\n         ng-show=\"showTitle()\">{{form.title}}</label>\r\n  <div class=\"radio\" ng-repeat=\"tm in form.titleMap\">\r\n    <label>\r\n      <input type=\"radio\"\r\n             class=\"{{::form.fieldHtmlClass}}\"\r\n             sf-changed=\"form\"\r\n             ng-disabled=\"form.readonly\"\r\n             sf-field-model\r\n             ng-value=\"tm.value\"\r\n             name=\"{{::fieldId(true, false)}}\">\r\n      <span ng-bind-html=\"tm.name\"></span>\r\n    </label>\r\n  </div>\r\n  <div class=\"help-block\" sf-message=\"form.description\"></div>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -296,7 +296,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = 'bootstrap/section.html';
-	var html = "<div class=\"schema-form-section {{::form.htmlClass}}\"></div>\r\n";
+	var html = "<div class=\"schema-form-section {{::form.htmlClass}}\" sf-key-controller sf-parent-key=\"[{{form.key.join('][')}}]\" sf-index=\"{{$index}}\"></div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -686,7 +686,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		          state.modelName = 'item';
 		        }
 
-		        // Flag to the builder that where in an array.
+		        // Flag to the builder that we're in an array.
 		        // This is needed for compatabiliy if a "old" add-on is used that
 		        // hasn't been transitioned to the new builder.
 		        state.arrayCompatFlag = true;
@@ -3779,17 +3779,19 @@ return /******/ (function(modules) { // webpackBootstrap
 		  return {
 		    scope: true,
 		    require: ['^^sfNewArray'],
-		    link: function link(scope, element, attrs, ctrl) {
-		      var currentKey = sfPath.parse(attrs.sfParentKey);
-		      if (currentKey.length > 1) currentKey = currentKey.splice(-1);
+		    link: {
+		      pre: function pre(scope, element, attrs, ctrl) {
+		        var currentKey = sfPath.parse(attrs.sfParentKey);
+		        if (currentKey.length > 1) currentKey = currentKey.splice(-1);
 
-		      scope.parentKey = scope.parentKey || [];
-		      scope.parentKey = scope.parentKey.concat(currentKey, Number(attrs.sfIndex));
+		        scope.parentKey = scope.parentKey || [];
+		        scope.parentKey = scope.parentKey.concat(currentKey, Number(attrs.sfIndex));
 
-		      scope.arrayIndex = Number(attrs.sfIndex);
-		      scope.arrayIndices = scope.arrayIndices || [];
-		      scope.arrayIndices = scope.arrayIndices.concat(scope.arrayIndex);
-		      scope.$i = scope.arrayIndices;
+		        scope.arrayIndex = Number(attrs.sfIndex);
+		        scope.arrayIndices = scope.arrayIndices || [];
+		        scope.arrayIndices = scope.arrayIndices.concat(scope.arrayIndex);
+		        scope.$i = scope.arrayIndices;
+		      }
 		    }
 		  };
 		};
