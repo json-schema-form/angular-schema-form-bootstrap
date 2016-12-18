@@ -9,20 +9,21 @@ const pjson = require('./package.json');
 console.log('Angular Schema Form Bootstrap v' + pjson.version);
 
 module.exports = {
-  // entry: './src/module.js',
   entry: {
-    'angular-schema-form-bootstrap': getPath('./src/module.js'),
-    'angular-schema-form-bootstrap-bundled': getPath('./src/module-bundled.js'),
+    'angular-schema-form-bootstrap': [ 'angular-schema-form', getPath('./src/module.js') ],
+    'angular-schema-form-bootstrap-bundled': [ 'angular-schema-form', getPath('./src/module-bundled.js') ],
   },
   output: {
     path: getPath('./dist'),
     filename: '[name].js',
-    sourceMapFilename: '[name].map',
-    libraryTarget: 'umd'
+    sourceMapFilename: '[name].map'
   },
   resolve: {
     modulesDirectories: [
-      'node_modules', 'src'
+      path.join(__dirname, "..", "angular-schema-form", "dist"),
+      path.join(__dirname, "src"),
+      path.join(__dirname, "src", "bootstrap"),
+      'node_modules',
     ],
     extensions: [ '', '.js', '.html' ]
   },
@@ -53,10 +54,10 @@ module.exports = {
     // }),
     new webpack.BannerPlugin(
       'angular-schema-form-bootstrap\n' +
-      '@version ' +
-      pjson.version + '\n' +
+      '@version ' + pjson.version + '\n' +
+      '@date ' + buildDate.toUTCString() + '\n' +
       '@link https://github.com/json-schema-form/angular-schema-form-bootstrap\n' +
       '@license MIT\n' +
-      'Copyright (c) 2016 JSON Schema Form')
+      'Copyright (c) 2014-' + buildDate.getFullYear() + ' JSON Schema Form')
   ]
 };
