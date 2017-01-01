@@ -56,6 +56,12 @@
   "form": [
     {
       "key": "transportCategory",
+      "type": "tabarray",
+      "add": "New",
+      "style": {
+        "add": "btn-success"
+      },
+      "title": "{{ 'Tab '+$index + ' ' + value.mode + ' ' || 'Tab' + $index }}",
       "items": [
         "transportCategory[].mode",
         {

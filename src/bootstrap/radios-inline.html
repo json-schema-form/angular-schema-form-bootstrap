@@ -1,4 +1,4 @@
-<div class="form-group schema-form-radios-inline {{::form.htmlClass}}"
+<div class="form-group schema-form-radios-inline {{::form.htmlClass + ' ' + idClass}}"
      ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess()}">
   <label class="control-label {{::form.labelHtmlClass}}"
         ng-show="showTitle()" sf-field-model

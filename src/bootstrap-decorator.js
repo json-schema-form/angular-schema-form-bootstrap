@@ -1,20 +1,20 @@
 // angular-templatecache-loader
-let textareaTemplate = require('./bootstrap/textarea.html');
-let fieldsetTemplate = require('./bootstrap/fieldset.html');
-let arrayTemplate = require('./bootstrap/array.html');
-let tabarrayTemplate = require('./bootstrap/tabarray.html');
-let tabsTemplate = require('./bootstrap/tabs.html');
-let sectionTemplate = require('./bootstrap/section.html');
-let actionsTemplate = require('./bootstrap/actions.html');
-let selectTemplate = require('./bootstrap/select.html');
-let checkboxTemplate = require('./bootstrap/checkbox.html');
-let checkboxesTemplate = require('./bootstrap/checkboxes.html');
-let submitTemplate = require('./bootstrap/submit.html');
-let radiosTemplate = require('./bootstrap/radios.html');
-let radiosInlineTemplate = require('./bootstrap/radios-inline.html');
-let radiobuttonsTemplate = require('./bootstrap/radio-buttons.html');
-let helpTemplate = require('./bootstrap/help.html');
-let defaultTemplate = require('./bootstrap/default.html');
+import textareaTemplate from './bootstrap/textarea.html';
+import fieldsetTemplate from './bootstrap/fieldset.html';
+import arrayTemplate from './bootstrap/array.html';
+import tabarrayTemplate from './bootstrap/tabarray.html';
+import tabsTemplate from './bootstrap/tabs.html';
+import sectionTemplate from './bootstrap/section.html';
+import actionsTemplate from './bootstrap/actions.html';
+import selectTemplate from './bootstrap/select.html';
+import checkboxTemplate from './bootstrap/checkbox.html';
+import checkboxesTemplate from './bootstrap/checkboxes.html';
+import submitTemplate from './bootstrap/submit.html';
+import radiosTemplate from './bootstrap/radios.html';
+import radiosInlineTemplate from './bootstrap/radios-inline.html';
+import radiobuttonsTemplate from './bootstrap/radio-buttons.html';
+import helpTemplate from './bootstrap/help.html';
+import defaultTemplate from './bootstrap/default.html';
 
 angular
   .module('schemaForm')

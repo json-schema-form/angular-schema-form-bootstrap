@@ -1,4 +1,4 @@
-<div ng-init="selected = { tab: 0 }" class="schema-form-tabs {{::form.htmlClass}}">
+<div ng-init="selected = { tab: 0 }" class="schema-form-tabs {{::form.htmlClass + ' ' + idClass}}">
   <ul class="nav nav-tabs">
     <li ng-repeat="tab in form.tabs"
         ng-disabled="form.readonly"

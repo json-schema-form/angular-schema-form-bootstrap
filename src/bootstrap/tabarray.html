@@ -2,7 +2,7 @@
      ng-model="modelArray" schema-validate="form"
      sf-field-model="sf-new-array"
      sf-new-array
-     class="clearfix schema-form-tabarray schema-form-tabarray-{{form.tabType || 'left'}} {{::form.htmlClass}}">
+     class="clearfix schema-form-tabarray schema-form-tabarray-{{form.tabType || 'left'}} {{::form.htmlClass + ' ' + idClass}}">
   <div ng-if="!form.tabType || form.tabType !== 'right'"
        ng-class="{'col-xs-3': !form.tabType || form.tabType === 'left'}">
     <ol class="nav nav-tabs"

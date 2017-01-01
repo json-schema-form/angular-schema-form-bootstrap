@@ -1,4 +1,4 @@
-<fieldset ng-disabled="form.readonly" class="schema-form-fieldset {{::form.htmlClass}}" sf-key-controller sf-parent-key="[{{form.key.join('][')}}]" sf-index="{{$index}}">
+<fieldset ng-disabled="form.readonly" class="schema-form-fieldset {{::form.htmlClass + ' ' + idClass}}" sf-key-controller sf-parent-key="[{{form.key.join('][')}}]" sf-index="{{$index}}">
   <legend ng-class="{'sr-only': !showTitle() }">{{ form.title }}</legend>
   <div class="help-block" ng-show="form.description" ng-bind-html="form.description"></div>
 </fieldset>
