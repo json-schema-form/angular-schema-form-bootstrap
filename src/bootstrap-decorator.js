@@ -1,20 +1,20 @@
-// angular-templatecache-loader
-import textareaTemplate from './bootstrap/textarea.html';
-import fieldsetTemplate from './bootstrap/fieldset.html';
-import arrayTemplate from './bootstrap/array.html';
-import tabarrayTemplate from './bootstrap/tabarray.html';
-import tabsTemplate from './bootstrap/tabs.html';
-import sectionTemplate from './bootstrap/section.html';
+// ngtemplate-loader embeds the html on build
 import actionsTemplate from './bootstrap/actions.html';
-import selectTemplate from './bootstrap/select.html';
+import arrayTemplate from './bootstrap/array.html';
 import checkboxTemplate from './bootstrap/checkbox.html';
 import checkboxesTemplate from './bootstrap/checkboxes.html';
-import submitTemplate from './bootstrap/submit.html';
+import defaultTemplate from './bootstrap/default.html';
+import fieldsetTemplate from './bootstrap/fieldset.html';
+import helpTemplate from './bootstrap/help.html';
+import radiobuttonsTemplate from './bootstrap/radio-buttons.html';
 import radiosTemplate from './bootstrap/radios.html';
 import radiosInlineTemplate from './bootstrap/radios-inline.html';
-import radiobuttonsTemplate from './bootstrap/radio-buttons.html';
-import helpTemplate from './bootstrap/help.html';
-import defaultTemplate from './bootstrap/default.html';
+import sectionTemplate from './bootstrap/section.html';
+import selectTemplate from './bootstrap/select.html';
+import submitTemplate from './bootstrap/submit.html';
+import tabarrayTemplate from './bootstrap/tabarray.html';
+import tabsTemplate from './bootstrap/tabs.html';
+import textareaTemplate from './bootstrap/textarea.html';
 
 angular
   .module('schemaForm')

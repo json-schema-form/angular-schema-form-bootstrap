@@ -1,7 +1,7 @@
 /*!
  * angular-schema-form-bootstrap
- * @version 1.0.0-alpha.5
- * @date Sun, 01 Jan 2017 14:14:55 GMT
+ * @version 1.0.0-alpha.1
+ * @date Sat, 14 Jan 2017 17:11:45 GMT
  * @link https://github.com/json-schema-form/angular-schema-form-bootstrap
  * @license MIT
  * Copyright (c) 2014-2017 JSON Schema Form
@@ -228,39 +228,39 @@ module.exports = path;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap_textarea_html__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap_textarea_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__bootstrap_textarea_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootstrap_fieldset_html__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootstrap_fieldset_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__bootstrap_fieldset_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootstrap_array_html__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootstrap_array_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__bootstrap_array_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootstrap_tabarray_html__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootstrap_tabarray_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__bootstrap_tabarray_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bootstrap_tabs_html__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bootstrap_tabs_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__bootstrap_tabs_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__bootstrap_section_html__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__bootstrap_section_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__bootstrap_section_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bootstrap_actions_html__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bootstrap_actions_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__bootstrap_actions_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__bootstrap_select_html__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__bootstrap_select_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__bootstrap_select_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__bootstrap_checkbox_html__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__bootstrap_checkbox_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__bootstrap_checkbox_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__bootstrap_checkboxes_html__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__bootstrap_checkboxes_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__bootstrap_checkboxes_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__bootstrap_submit_html__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__bootstrap_submit_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__bootstrap_submit_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__bootstrap_radios_html__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__bootstrap_radios_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__bootstrap_radios_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__bootstrap_radios_inline_html__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__bootstrap_radios_inline_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__bootstrap_radios_inline_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__bootstrap_radio_buttons_html__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__bootstrap_radio_buttons_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__bootstrap_radio_buttons_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__bootstrap_help_html__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__bootstrap_help_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__bootstrap_help_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__bootstrap_default_html__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__bootstrap_default_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__bootstrap_default_html__);
-// angular-templatecache-loader
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap_actions_html__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap_actions_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__bootstrap_actions_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootstrap_array_html__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootstrap_array_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__bootstrap_array_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootstrap_checkbox_html__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootstrap_checkbox_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__bootstrap_checkbox_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootstrap_checkboxes_html__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootstrap_checkboxes_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__bootstrap_checkboxes_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bootstrap_default_html__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bootstrap_default_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__bootstrap_default_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__bootstrap_fieldset_html__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__bootstrap_fieldset_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__bootstrap_fieldset_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bootstrap_help_html__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bootstrap_help_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__bootstrap_help_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__bootstrap_radio_buttons_html__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__bootstrap_radio_buttons_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__bootstrap_radio_buttons_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__bootstrap_radios_html__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__bootstrap_radios_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__bootstrap_radios_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__bootstrap_radios_inline_html__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__bootstrap_radios_inline_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__bootstrap_radios_inline_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__bootstrap_section_html__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__bootstrap_section_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__bootstrap_section_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__bootstrap_select_html__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__bootstrap_select_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__bootstrap_select_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__bootstrap_submit_html__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__bootstrap_submit_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__bootstrap_submit_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__bootstrap_tabarray_html__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__bootstrap_tabarray_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__bootstrap_tabarray_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__bootstrap_tabs_html__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__bootstrap_tabs_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__bootstrap_tabs_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__bootstrap_textarea_html__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__bootstrap_textarea_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__bootstrap_textarea_html__);
+// ngtemplate-loader embeds the html on build
 
 
 
@@ -352,26 +352,26 @@ function bootstrapDecoratorConfig(
 
   var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
-    actions: {template: __WEBPACK_IMPORTED_MODULE_6__bootstrap_actions_html___default.a, builder: defaults},
-    array: {template: __WEBPACK_IMPORTED_MODULE_2__bootstrap_array_html___default.a, builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    button: {template: __WEBPACK_IMPORTED_MODULE_10__bootstrap_submit_html___default.a, builder: defaults},
-    checkbox: {template: __WEBPACK_IMPORTED_MODULE_8__bootstrap_checkbox_html___default.a, builder: defaults},
-    checkboxes: {template: __WEBPACK_IMPORTED_MODULE_9__bootstrap_checkboxes_html___default.a, builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    conditional: {template: __WEBPACK_IMPORTED_MODULE_5__bootstrap_section_html___default.a, builder: [sfField, simpleTransclusion, condition]},
-    'default': {template: __WEBPACK_IMPORTED_MODULE_15__bootstrap_default_html___default.a, builder: defaults},
-    fieldset: {template: __WEBPACK_IMPORTED_MODULE_1__bootstrap_fieldset_html___default.a, builder: [sfField, simpleTransclusion, condition]},
-    help: {template: __WEBPACK_IMPORTED_MODULE_14__bootstrap_help_html___default.a, builder: defaults},
-    number: {template: __WEBPACK_IMPORTED_MODULE_15__bootstrap_default_html___default.a, builder: defaults.concat(numeric)},
-    password: {template: __WEBPACK_IMPORTED_MODULE_15__bootstrap_default_html___default.a, builder: defaults},
-    radios: {template: __WEBPACK_IMPORTED_MODULE_11__bootstrap_radios_html___default.a, builder: defaults},
-    'radios-inline': {template: __WEBPACK_IMPORTED_MODULE_12__bootstrap_radios_inline_html___default.a, builder: defaults},
-    radiobuttons: {template: __WEBPACK_IMPORTED_MODULE_13__bootstrap_radio_buttons_html___default.a, builder: defaults},
-    section: {template: __WEBPACK_IMPORTED_MODULE_5__bootstrap_section_html___default.a, builder: [sfField, simpleTransclusion, condition]},
-    select: {template: __WEBPACK_IMPORTED_MODULE_7__bootstrap_select_html___default.a, builder: defaults.concat(selectPlaceholder)},
-    submit: {template: __WEBPACK_IMPORTED_MODULE_10__bootstrap_submit_html___default.a, builder: defaults},
-    tabarray: {template: __WEBPACK_IMPORTED_MODULE_3__bootstrap_tabarray_html___default.a, builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    tabs: {template: __WEBPACK_IMPORTED_MODULE_4__bootstrap_tabs_html___default.a, builder: [sfField, ngModelOptions, tabs, condition]},
-    textarea: {template: __WEBPACK_IMPORTED_MODULE_0__bootstrap_textarea_html___default.a, builder: defaults},
+    actions: {template: __WEBPACK_IMPORTED_MODULE_0__bootstrap_actions_html___default.a, builder: defaults},
+    array: {template: __WEBPACK_IMPORTED_MODULE_1__bootstrap_array_html___default.a, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    button: {template: __WEBPACK_IMPORTED_MODULE_12__bootstrap_submit_html___default.a, builder: defaults},
+    checkbox: {template: __WEBPACK_IMPORTED_MODULE_2__bootstrap_checkbox_html___default.a, builder: defaults},
+    checkboxes: {template: __WEBPACK_IMPORTED_MODULE_3__bootstrap_checkboxes_html___default.a, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    conditional: {template: __WEBPACK_IMPORTED_MODULE_10__bootstrap_section_html___default.a, builder: [sfField, simpleTransclusion, condition]},
+    'default': {template: __WEBPACK_IMPORTED_MODULE_4__bootstrap_default_html___default.a, builder: defaults},
+    fieldset: {template: __WEBPACK_IMPORTED_MODULE_5__bootstrap_fieldset_html___default.a, builder: [sfField, simpleTransclusion, condition]},
+    help: {template: __WEBPACK_IMPORTED_MODULE_6__bootstrap_help_html___default.a, builder: defaults},
+    number: {template: __WEBPACK_IMPORTED_MODULE_4__bootstrap_default_html___default.a, builder: defaults.concat(numeric)},
+    password: {template: __WEBPACK_IMPORTED_MODULE_4__bootstrap_default_html___default.a, builder: defaults},
+    radios: {template: __WEBPACK_IMPORTED_MODULE_8__bootstrap_radios_html___default.a, builder: defaults},
+    'radios-inline': {template: __WEBPACK_IMPORTED_MODULE_9__bootstrap_radios_inline_html___default.a, builder: defaults},
+    radiobuttons: {template: __WEBPACK_IMPORTED_MODULE_7__bootstrap_radio_buttons_html___default.a, builder: defaults},
+    section: {template: __WEBPACK_IMPORTED_MODULE_10__bootstrap_section_html___default.a, builder: [sfField, simpleTransclusion, condition]},
+    select: {template: __WEBPACK_IMPORTED_MODULE_11__bootstrap_select_html___default.a, builder: defaults.concat(selectPlaceholder)},
+    submit: {template: __WEBPACK_IMPORTED_MODULE_12__bootstrap_submit_html___default.a, builder: defaults},
+    tabarray: {template: __WEBPACK_IMPORTED_MODULE_13__bootstrap_tabarray_html___default.a, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    tabs: {template: __WEBPACK_IMPORTED_MODULE_14__bootstrap_tabs_html___default.a, builder: [sfField, ngModelOptions, tabs, condition]},
+    textarea: {template: __WEBPACK_IMPORTED_MODULE_15__bootstrap_textarea_html___default.a, builder: defaults},
   }, []);
 };
 
