@@ -18,8 +18,7 @@ import textareaTemplate from './bootstrap/textarea.html';
 
 angular
   .module('schemaForm')
-  .config(bootstrapDecoratorConfig)
-  .filter('sfCamelKey', sfCamelKeyFilter);
+  .config(bootstrapDecoratorConfig);
 
 bootstrapDecoratorConfig.$inject = [
   'schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider', '$injector'
@@ -111,21 +110,4 @@ function bootstrapDecoratorConfig(
     tabs: {template: tabsTemplate, builder: [sfField, ngModelOptions, tabs, condition]},
     textarea: {template: textareaTemplate, builder: defaults},
   }, []);
-};
-
-/**
- * sfCamelKey Filter
- */
-function sfCamelKeyFilter() {
-  return function(formKey) {
-    if (!formKey) { return ''; };
-    var part, i, key;
-    key = formKey.slice();
-    for (i = 0; i < key.length; i++) {
-      part = key[i].toLowerCase().split('');
-      if (i && part.length) { part[0] = part[0].toUpperCase(); };
-      key[i] = part.join('');
-    };
-    return key.join('');
-  };
 };

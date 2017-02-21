@@ -1,7 +1,7 @@
 /*!
  * angular-schema-form-bootstrap
  * @version 1.0.0-alpha.1
- * @date Sat, 14 Jan 2017 17:11:45 GMT
+ * @date Sun, 29 Jan 2017 00:45:28 GMT
  * @link https://github.com/json-schema-form/angular-schema-form-bootstrap
  * @license MIT
  * Copyright (c) 2014-2017 JSON Schema Form
@@ -280,8 +280,7 @@ module.exports = path;
 
 angular
   .module('schemaForm')
-  .config(bootstrapDecoratorConfig)
-  .filter('sfCamelKey', sfCamelKeyFilter);
+  .config(bootstrapDecoratorConfig);
 
 bootstrapDecoratorConfig.$inject = [
   'schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider', '$injector'
@@ -373,23 +372,6 @@ function bootstrapDecoratorConfig(
     tabs: {template: __WEBPACK_IMPORTED_MODULE_14__bootstrap_tabs_html___default.a, builder: [sfField, ngModelOptions, tabs, condition]},
     textarea: {template: __WEBPACK_IMPORTED_MODULE_15__bootstrap_textarea_html___default.a, builder: defaults},
   }, []);
-};
-
-/**
- * sfCamelKey Filter
- */
-function sfCamelKeyFilter() {
-  return function(formKey) {
-    if (!formKey) { return ''; };
-    var part, i, key;
-    key = formKey.slice();
-    for (i = 0; i < key.length; i++) {
-      part = key[i].toLowerCase().split('');
-      if (i && part.length) { part[0] = part[0].toUpperCase(); };
-      key[i] = part.join('');
-    };
-    return key.join('');
-  };
 };
 
 
