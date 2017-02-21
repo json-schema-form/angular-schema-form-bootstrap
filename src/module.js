@@ -1,0 +1,1 @@
+require('bootstrap-decorator.js');

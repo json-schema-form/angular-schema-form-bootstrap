@@ -1,5 +1,31 @@
-angular.module('schemaForm').config(['schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider',
-function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
+// ngtemplate-loader embeds the html on build
+import actionsTemplate from './bootstrap/actions.html';
+import arrayTemplate from './bootstrap/array.html';
+import checkboxTemplate from './bootstrap/checkbox.html';
+import checkboxesTemplate from './bootstrap/checkboxes.html';
+import defaultTemplate from './bootstrap/default.html';
+import fieldsetTemplate from './bootstrap/fieldset.html';
+import helpTemplate from './bootstrap/help.html';
+import radiobuttonsTemplate from './bootstrap/radio-buttons.html';
+import radiosTemplate from './bootstrap/radios.html';
+import radiosInlineTemplate from './bootstrap/radios-inline.html';
+import sectionTemplate from './bootstrap/section.html';
+import selectTemplate from './bootstrap/select.html';
+import submitTemplate from './bootstrap/submit.html';
+import tabarrayTemplate from './bootstrap/tabarray.html';
+import tabsTemplate from './bootstrap/tabs.html';
+import textareaTemplate from './bootstrap/textarea.html';
+
+angular
+  .module('schemaForm')
+  .config(bootstrapDecoratorConfig);
+
+bootstrapDecoratorConfig.$inject = [
+  'schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider', '$injector'
+];
+
+function bootstrapDecoratorConfig(
+    schemaFormProvider, decoratorsProvider, sfBuilderProvider, sfPathProvider, $injector) {
   var base = 'decorators/bootstrap/';
 
   var simpleTransclusion  = sfBuilderProvider.builders.simpleTransclusion;
@@ -8,6 +34,7 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
   var sfField             = sfBuilderProvider.builders.sfField;
   var condition           = sfBuilderProvider.builders.condition;
   var array               = sfBuilderProvider.builders.array;
+  var numeric             = sfBuilderProvider.builders.numeric;
 
   // Tabs is so bootstrap specific that it stays here.
   var tabs = function(args) {
@@ -15,11 +42,16 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
       var tabContent = args.fieldFrag.querySelector('.tab-content');
 
       args.form.tabs.forEach(function(tab, index) {
+        var evalExpr = '(evalExpr(' + args.path + '.tabs[' + index + ']' +
+                       '.condition, { model: model, "arrayIndex": $index}))';
         var div = document.createElement('div');
         div.className = 'tab-pane';
         div.setAttribute('ng-disabled', 'form.readonly');
         div.setAttribute('ng-show', 'selected.tab === ' + index);
         div.setAttribute('ng-class', '{active: selected.tab === ' + index + '}');
+        if(!!tab.condition) {
+          div.setAttribute('ng-if', evalExpr);
+        };
 
         var childFrag = args.build(tab.items, args.path + '.tabs[' + index + '].items', args.state);
         div.appendChild(childFrag);
@@ -27,17 +59,6 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
       });
     }
   };
-  
-  // Set tabArray sortOptions.items default.
-  var tabArray = function(args) {
-    if(args.form.hasOwnProperty('sortOptions')) {
-      if(!args.form.sortOptions.hasOwnProperty('items')) {
-        args.form.sortOptions['items'] = 'li:not(:last-child)';
-      }
-    } else {
-      args.form['sortOptions'] = {items: 'li:not(:last-child)'};
-    }
-  }
 
   var selectPlaceholder = function(args) {
     if (args.form.placeholder) {
@@ -68,26 +89,25 @@ function(decoratorsProvider, sfBuilderProvider, sfPathProvider) {
 
   var defaults = [sfField, ngModel, ngModelOptions, condition];
   decoratorsProvider.defineDecorator('bootstrapDecorator', {
-    textarea: {template: base + 'textarea.html', builder: defaults},
-    fieldset: {template: base + 'fieldset.html', builder: [sfField, simpleTransclusion, condition]},
-    array: {template: base + 'array.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    tabarray: {template: base + 'tabarray.html', builder: [sfField, ngModelOptions, ngModel, array, condition, tabArray]},
-    tabs: {template: base + 'tabs.html', builder: [sfField, ngModelOptions, tabs, condition]},
-    section: {template: base + 'section.html', builder: [sfField, simpleTransclusion, condition]},
-    conditional: {template: base + 'section.html', builder: [sfField, simpleTransclusion, condition]},
-    actions: {template: base + 'actions.html', builder: defaults},
-    select: {template: base + 'select.html', builder: [selectPlaceholder, sfField, ngModel, ngModelOptions, condition]},
-    checkbox: {template: base + 'checkbox.html', builder: defaults},
-    checkboxes: {template: base + 'checkboxes.html', builder: [sfField, ngModelOptions, ngModel, array, condition]},
-    number: {template: base + 'default.html', builder: defaults},
-    password: {template: base + 'default.html', builder: defaults},
-    submit: {template: base + 'submit.html', builder: defaults},
-    button: {template: base + 'submit.html', builder: defaults},
-    radios: {template: base + 'radios.html', builder: defaults},
-    'radios-inline': {template: base + 'radios-inline.html', builder: defaults},
-    radiobuttons: {template: base + 'radio-buttons.html', builder: defaults},
-    help: {template: base + 'help.html', builder: defaults},
-    'default': {template: base + 'default.html', builder: defaults}
+    actions: {template: actionsTemplate, builder: defaults},
+    array: {template: arrayTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    button: {template: submitTemplate, builder: defaults},
+    checkbox: {template: checkboxTemplate, builder: defaults},
+    checkboxes: {template: checkboxesTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    conditional: {template: sectionTemplate, builder: [sfField, simpleTransclusion, condition]},
+    'default': {template: defaultTemplate, builder: defaults},
+    fieldset: {template: fieldsetTemplate, builder: [sfField, simpleTransclusion, condition]},
+    help: {template: helpTemplate, builder: defaults},
+    number: {template: defaultTemplate, builder: defaults.concat(numeric)},
+    password: {template: defaultTemplate, builder: defaults},
+    radios: {template: radiosTemplate, builder: defaults},
+    'radios-inline': {template: radiosInlineTemplate, builder: defaults},
+    radiobuttons: {template: radiobuttonsTemplate, builder: defaults},
+    section: {template: sectionTemplate, builder: [sfField, simpleTransclusion, condition]},
+    select: {template: selectTemplate, builder: defaults.concat(selectPlaceholder)},
+    submit: {template: submitTemplate, builder: defaults},
+    tabarray: {template: tabarrayTemplate, builder: [sfField, ngModelOptions, ngModel, array, condition]},
+    tabs: {template: tabsTemplate, builder: [sfField, ngModelOptions, tabs, condition]},
+    textarea: {template: textareaTemplate, builder: defaults},
   }, []);
-
-}]);
+};
