@@ -22,9 +22,11 @@ or
 ```sh
 npm install angular-schema-form-bootstrap
 ```
-And then include `angular-schema-form-bootstrap-bundled.min.js`. **Note that angular-schema-form >= 1.0.0-alpha.1 is needed**.
 
-You **DO NOT** need to include angular-schema-form with this version, it is now **embedded** within the above file. If you wish to include the files separately you can still use `angular-schema-form-bootstrap.min.js`
+The package.json 'main' script is this library alone and unminified so that minification can be handled by webpack or another script bundler.
+**Note that angular-schema-form >= 1.0.0-alpha.1 is needed in that case**.
+
+If you include `angular-schema-form-bootstrap-bundled.min.js` you **DO NOT** need to include angular-schema-form, it is now **embedded** within the bundled above file. If you wish to include the files separately you can still use `angular-schema-form-bootstrap.js` or `angular-schema-form-bootstrap.min.js`
 
 Future
 ------
