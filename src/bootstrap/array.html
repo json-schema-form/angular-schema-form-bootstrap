@@ -5,7 +5,7 @@
   <ol class="list-group" sf-field-model ui-sortable="form.sortOptions">
     <li class="list-group-item {{::form.fieldHtmlClass}}"
         sf-field-model="ng-repeat"
-        ng-repeat="item in $$value$$ track by $index">
+        ng-repeat="item in $$value$$ track by $id(item)">
       <button ng-hide="form.readonly || form.remove === null"
               ng-click="deleteFromArray($index)"
               ng-disabled="form.schema.minItems >= modelArray.length"

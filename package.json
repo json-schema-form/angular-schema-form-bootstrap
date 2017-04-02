@@ -1,6 +1,6 @@
 {
   "name": "angular-schema-form-bootstrap",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Bootstrap 3 decorator for Angular Schema Form",
   "main": "dist/angular-schema-form-bootstrap.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "angular": ">= 1.2",
     "angular-messages": "^1.5.0",
     "angular-sanitize": ">= 1.2",
-    "angular-schema-form": "^1.0.0-alpha.3",
+    "angular-schema-form": "^1.0.0-alpha.4",
     "tv4": "~1.0.15"
   },
   "devDependencies": {
