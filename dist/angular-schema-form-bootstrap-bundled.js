@@ -1,7 +1,7 @@
 /*!
  * angular-schema-form-bootstrap
- * @version 1.0.0-alpha.3
- * @date Sun, 02 Apr 2017 13:11:20 GMT
+ * @version 1.0.0-alpha.4
+ * @date Mon, 03 Apr 2017 13:11:24 GMT
  * @link https://github.com/json-schema-form/angular-schema-form-bootstrap
  * @license MIT
  * Copyright (c) 2014-2017 JSON Schema Form
@@ -175,7 +175,7 @@ module.exports = path;
 /***/ function(module, exports) {
 
 var path = '/bootstrap/array.html';
-var html = "<div  class=\"schema-form-array {{::form.htmlClass + ' ' + idClass}}\"\r\n      sf-field-model=\"sf-new-array\"\r\n      sf-new-array>\r\n  <label class=\"control-label\" ng-show=\"showTitle()\">{{ form.title }}</label>\r\n  <ol class=\"list-group\" sf-field-model ui-sortable=\"form.sortOptions\">\r\n    <li class=\"list-group-item {{::form.fieldHtmlClass}}\"\r\n        sf-field-model=\"ng-repeat\"\r\n        ng-repeat=\"item in $$value$$ track by $id(item)\">\r\n      <button ng-hide=\"form.readonly || form.remove === null\"\r\n              ng-click=\"deleteFromArray($index)\"\r\n              ng-disabled=\"form.schema.minItems >= modelArray.length\"\r\n              style=\"position: relative; z-index: 20;\"\r\n              type=\"button\" class=\"close pull-right\">\r\n              <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\r\n      </button>\r\n      <div schema-form-array-items sf-key-controller sf-parent-key=\"[{{form.key.join('][')}}]\" sf-index=\"{{$index}}\"></div>\r\n    </li>\r\n  </ol>\r\n  <div class=\"clearfix\" style=\"padding: 15px;\" ng-model=\"modelArray\" schema-validate=\"form\">\r\n    <div class=\"help-block\"\r\n         ng-show=\"(hasError() && errorMessage(schemaError())) || form.description\"\r\n         ng-bind-html=\"(hasError() && errorMessage(schemaError())) || form.description\"></div>\r\n\r\n    <button ng-hide=\"form.readonly || form.add === null\"\r\n            ng-click=\"appendToArray()\"\r\n            ng-disabled=\"form.schema.maxItems <= modelArray.length\"\r\n            type=\"button\"\r\n            class=\"btn {{ form.style.add || 'btn-default' }} pull-right\">\r\n      <i class=\"glyphicon glyphicon-plus\"></i>\r\n      {{ form.add || 'Add'}}\r\n    </button>\r\n  </div>\r\n</div>\r\n";
+var html = "<div  class=\"schema-form-array {{::form.htmlClass + ' ' + idClass}}\"\r\n      sf-field-model=\"sf-new-array\"\r\n      sf-new-array>\r\n  <label class=\"control-label\" ng-show=\"showTitle()\">{{ form.title }}</label>\r\n  <ol class=\"list-group\" sf-field-model ui-sortable=\"form.sortOptions\">\r\n    <li class=\"list-group-item {{::form.fieldHtmlClass}}\"\r\n        sf-field-model=\"ng-repeat\"\r\n        ng-repeat=\"item in $$value$$ track by $id(trackBy(item, $index))\">\r\n      <button ng-hide=\"form.readonly || form.remove === null\"\r\n              ng-click=\"deleteFromArray(item)\"\r\n              ng-disabled=\"form.schema.minItems >= modelArray.length\"\r\n              style=\"position: relative; z-index: 20;\"\r\n              type=\"button\" class=\"close pull-right\">\r\n              <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\r\n      </button>\r\n      <div schema-form-array-items sf-key-controller sf-parent-key=\"[{{form.key.join('][')}}]\" sf-index=\"{{$index}}\"></div>\r\n    </li>\r\n  </ol>\r\n  <div class=\"clearfix\" style=\"padding: 15px;\" ng-model=\"modelArray\" schema-validate=\"form\">\r\n    <div class=\"help-block\"\r\n         ng-show=\"(hasError() && errorMessage(schemaError())) || form.description\"\r\n         ng-bind-html=\"(hasError() && errorMessage(schemaError())) || form.description\"></div>\r\n\r\n    <button ng-hide=\"form.readonly || form.add === null\"\r\n            ng-click=\"appendToArray()\"\r\n            ng-disabled=\"form.schema.maxItems <= modelArray.length\"\r\n            type=\"button\"\r\n            class=\"btn {{ form.style.add || 'btn-default' }} pull-right\">\r\n      <i class=\"glyphicon glyphicon-plus\"></i>\r\n      {{ form.add || 'Add'}}\r\n    </button>\r\n  </div>\r\n</div>\r\n";
 window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 module.exports = path;
 
@@ -463,8 +463,8 @@ function bootstrapDecoratorConfig(
 
 /* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {/*!
  * angular-schema-form
- * @version 1.0.0-alpha.3
- * @date Sun, 02 Apr 2017 13:00:09 GMT
+ * @version 1.0.0-alpha.4
+ * @date Mon, 03 Apr 2017 12:57:49 GMT
  * @link https://github.com/json-schema-form/angular-schema-form
  * @license MIT
  * Copyright (c) 2014-2017 JSON Schema Form
@@ -534,7 +534,7 @@ function bootstrapDecoratorConfig(
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3192,7 +3192,7 @@ module.exports = __webpack_require__(4);
 /***/ })
 /******/ ]);
 //# sourceMappingURL=json-schema-form-core.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(19).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(18).setImmediate))
 
 /***/ }),
 /* 2 */
@@ -3222,8 +3222,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3232,18 +3231,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_json_schema_form_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_json_schema_form_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sf_builder_provider__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_schema_form_decorators_provider__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_schema_form_provider__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_sf_error_message_provider__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sf_path_provider__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_sf_changed_directive__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_sf_field_directive__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_sf_message_directive__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_sf_array_directive__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_sf_key_directive__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_sf_schema_directive__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_schema_validate_directive__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sf_builder_provider__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_schema_form_decorators_provider__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_schema_form_provider__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_sf_error_message_provider__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sf_path_provider__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_sf_changed_directive__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_sf_field_directive__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_sf_message_directive__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_sf_array_directive__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_sf_key_directive__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_sf_schema_directive__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_schema_validate_directive__ = __webpack_require__(4);
 
 
 
@@ -3297,7 +3296,7 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
 .directive('sfChanged', __WEBPACK_IMPORTED_MODULE_7_sf_changed_directive__["a" /* default */]).directive('sfField', ['$parse', '$compile', '$http', '$templateCache', '$interpolate', '$q', 'sfErrorMessage', 'sfPath', 'sfSelect', __WEBPACK_IMPORTED_MODULE_8_sf_field_directive__["a" /* default */]]).directive('sfMessage', ['$injector', 'sfErrorMessage', __WEBPACK_IMPORTED_MODULE_9_sf_message_directive__["a" /* default */]]).directive('sfNewArray', ['sfSelect', 'sfPath', 'schemaForm', __WEBPACK_IMPORTED_MODULE_10_sf_array_directive__["a" /* default */]]).directive('sfSchema', ['$compile', '$http', '$templateCache', '$q', 'schemaForm', 'schemaFormDecorators', 'sfSelect', 'sfPath', 'sfBuilder', __WEBPACK_IMPORTED_MODULE_12_sf_schema_directive__["a" /* default */]]).directive('schemaValidate', ['sfValidator', '$parse', 'sfSelect', __WEBPACK_IMPORTED_MODULE_13_schema_validate_directive__["a" /* default */]]).directive('sfKeyController', ['schemaForm', 'sfPath', __WEBPACK_IMPORTED_MODULE_11_sf_key_directive__["a" /* default */]]);
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3487,12 +3486,14 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
 };
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 
 
 /**
@@ -3506,6 +3507,11 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
     }],
     link: function link(scope, element, attrs) {
       scope.min = 0;
+
+      scope.trackBy = function (item, index) {
+        if (item && (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') return item;
+        return index;
+      };
 
       scope.modelArray = scope.$eval(attrs.sfNewArray);
 
@@ -3664,11 +3670,17 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
         return model;
       };
 
-      scope.deleteFromArray = function (index) {
+      scope.deleteFromArray = function (item) {
+        var index = scope.modelArray.indexOf(item);
         var model = scope.modelArray;
         if (model) {
           model.splice(index, 1);
         }
+
+        if (item.$$hashKey) {
+          scope.destroyed = item.$$hashKey;
+        }
+
         return model;
       };
 
@@ -3718,7 +3730,7 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
 };
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3764,7 +3776,7 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
 };
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4049,9 +4061,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           // in the form definition.
           scope.$on('$destroy', function () {
             var key = scope.getKey();
+            var arrayIndex = typeof scope.arrayIndex == 'number' ? scope.arrayIndex + 1 : 0;
 
             // If the entire schema form is destroyed we don't touch the model
-            if (!scope.externalDestructionInProgress) {
+            if (!scope.externalDestructionInProgress && (!scope.model.$$hashKey || scope.model.$$hashKey === scope.destroyed)) {
               var destroyStrategy = form.destroyStrategy || scope.options && scope.options.destroyStrategy || 'remove';
               // No key no model, and we might have strategy 'retain'
               if (key && destroyStrategy !== 'retain') {
@@ -4093,7 +4106,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 };
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4132,7 +4145,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 };;
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4236,7 +4249,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 };
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4466,7 +4479,7 @@ FIXME: real documentation
 };
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5009,7 +5022,7 @@ FIXME: real documentation
 };;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5148,7 +5161,7 @@ FIXME: real documentation
 };
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5476,7 +5489,7 @@ FIXME: real documentation
 };
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5613,7 +5626,7 @@ FIXME: real documentation
 };
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5653,7 +5666,7 @@ var sfPathProviderClass = function () {
 /* harmony default export */ __webpack_exports__["a"] = sfPathProviderClass;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -5839,7 +5852,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -6029,10 +6042,10 @@ process.umask = function() { return 0; };
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(16)))
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -6085,18 +6098,17 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(18);
+__webpack_require__(17);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 20 */,
-/* 21 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(4);
+module.exports = __webpack_require__(3);
 
 
 /***/ })
