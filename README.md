@@ -16,15 +16,29 @@ since they are no longer needed.
 Install
 -------
 ```sh
-bower install angular-schema-form-bootstrap
-```
-or
-```sh
 npm install angular-schema-form-bootstrap
 ```
+**note** we do not recommend using bower as even the bower team recommend using yarn and webpack now.
 
 The package.json 'main' script is this library alone and unminified so that minification can be handled by webpack or another script bundler.
-**Note that angular-schema-form >= 1.0.0-alpha.1 is needed in that case**.
+
+**Note when using webpack angular-schema-form versions match this repo so ASF 1.0.0-alpha.4 works with Bootstrap 1.0.0-alpha.4**.
+
+If you are unsure, check the bundled version in this repo and see which versions are used as both repo now include a version header.
+
+Look for this:
+```js
+/*!
+ * angular-schema-form
+ * @version 1.0.0-alpha.4
+ * @date Mon, 17 Apr 2017 08:55:13 GMT
+ * @link https://github.com/json-schema-form/angular-schema-form
+ * @license MIT
+ * Copyright (c) 2014-2017 JSON Schema Form
+ */
+```
+
+Old versions pre-alpha work with 0.8.13 or ASF, but the alphas should be more stable than those versions with more bugs fixed.
 
 If you include `angular-schema-form-bootstrap-bundled.min.js` you **DO NOT** need to include angular-schema-form, it is now **embedded** within the bundled above file. If you wish to include the files separately you can still use `angular-schema-form-bootstrap.js` or `angular-schema-form-bootstrap.min.js`
 
