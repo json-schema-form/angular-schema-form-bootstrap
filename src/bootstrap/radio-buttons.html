@@ -1,5 +1,9 @@
 <div class="form-group schema-form-radiobuttons {{::form.htmlClass + ' ' + idClass}}"
-     ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
+     ng-class="{
+       'has-error': form.disableErrorState !== true &&  hasError(),
+       'has-success': form.disableSuccessState !== true &&  hasSuccess(),
+       'required': form.required === true
+     }">
   <div>
     <label class="control-label {{::form.labelHtmlClass}}" ng-show="showTitle()">{{form.title}}</label>
   </div>

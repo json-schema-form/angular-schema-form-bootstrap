@@ -1,5 +1,10 @@
 <div class="checkbox schema-form-checkbox {{::form.htmlClass + ' ' + idClass}}"
-     ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
+     ng-class="{
+       'has-error': form.disableErrorState !== true && hasError(),
+       'has-success': form.disableSuccessState !== true && hasSuccess(),
+       'has-feedback': form.feedback !== false,
+       'required': form.required === true
+     }">
   <label class="{{::form.labelHtmlClass}}">
     <input type="checkbox"
            sf-changed="form"

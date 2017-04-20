@@ -1,7 +1,11 @@
 <div sf-field-model="sf-new-array"
      sf-new-array
      class="form-group schema-form-checkboxes {{::form.htmlClass + ' ' + idClass}}"
-     ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
+     ng-class="{
+       'has-error': form.disableErrorState !== true &&  hasError(),
+       'has-success': form.disableSuccessState !== true &&  hasSuccess(),
+       'required': form.required === true
+     }">
   <label class="control-label {{::form.labelHtmlClass}}"
          sf-field-model
          schema-validate="form"

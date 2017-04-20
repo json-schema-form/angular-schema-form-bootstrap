@@ -1,6 +1,6 @@
 {
   "name": "angular-schema-form-bootstrap",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "Bootstrap 3 decorator for Angular Schema Form",
   "main": "dist/angular-schema-form-bootstrap.js",
   "scripts": {
@@ -51,7 +51,7 @@
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
     "streamqueue": "^0.1.3",
-    "uglify-js": "^2.6.2",
+    "uglify-js": "github:mishoo/UglifyJS2#harmony",
     "webpack": "^2.1.0-beta.27",
     "webpack-dev-server": "^2.1.0-beta.12"
   }
