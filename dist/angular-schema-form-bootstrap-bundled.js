@@ -1,7 +1,7 @@
 /*!
  * angular-schema-form-bootstrap
  * @version 1.0.0-alpha.5
- * @date Thu, 20 Apr 2017 11:28:20 GMT
+ * @date Sat, 29 Apr 2017 14:49:38 GMT
  * @link https://github.com/json-schema-form/angular-schema-form-bootstrap
  * @license MIT
  * Copyright (c) 2014-2017 JSON Schema Form
@@ -211,7 +211,7 @@ module.exports = path;
 /***/ function(module, exports) {
 
 var path = '/bootstrap/fieldset.html';
-var html = "<fieldset ng-disabled=\"form.readonly\" class=\"schema-form-fieldset {{::form.htmlClass + ' ' + idClass}}\" sf-key-controller sf-parent-key=\"[{{form.key.join('][')}}]\" sf-index=\"{{$index}}\">\r\n  <legend ng-class=\"{'sr-only': !showTitle() }\">{{ form.title }}</legend>\r\n  <div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div>\r\n</fieldset>\r\n";
+var html = "<fieldset ng-disabled=\"form.readonly\" class=\"schema-form-fieldset {{::form.htmlClass + ' ' + idClass}}\">\r\n  <legend ng-class=\"{'sr-only': !showTitle() }\">{{ form.title }}</legend>\r\n  <div class=\"help-block\" ng-show=\"form.description\" ng-bind-html=\"form.description\"></div>\r\n</fieldset>\r\n";
 window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 module.exports = path;
 
@@ -464,7 +464,7 @@ function bootstrapDecoratorConfig(
 /* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {/*!
  * angular-schema-form
  * @version 1.0.0-alpha.5
- * @date Thu, 20 Apr 2017 11:16:31 GMT
+ * @date Wed, 26 Apr 2017 14:49:08 GMT
  * @link https://github.com/json-schema-form/angular-schema-form
  * @license MIT
  * Copyright (c) 2014-2017 JSON Schema Form
@@ -3294,7 +3294,7 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
 })
 
 // Directives
-.directive('sfChanged', __WEBPACK_IMPORTED_MODULE_7_sf_changed_directive__["a" /* default */]).directive('sfField', ['$parse', '$compile', '$http', '$templateCache', '$interpolate', '$q', 'sfErrorMessage', 'sfPath', 'sfSelect', __WEBPACK_IMPORTED_MODULE_8_sf_field_directive__["a" /* default */]]).directive('sfMessage', ['$injector', 'sfErrorMessage', __WEBPACK_IMPORTED_MODULE_9_sf_message_directive__["a" /* default */]]).directive('sfNewArray', ['sfSelect', 'sfPath', 'schemaForm', __WEBPACK_IMPORTED_MODULE_10_sf_array_directive__["a" /* default */]]).directive('sfSchema', ['$compile', '$http', '$templateCache', '$q', 'schemaForm', 'schemaFormDecorators', 'sfSelect', 'sfPath', 'sfBuilder', __WEBPACK_IMPORTED_MODULE_12_sf_schema_directive__["a" /* default */]]).directive('schemaValidate', ['sfValidator', '$parse', 'sfSelect', __WEBPACK_IMPORTED_MODULE_13_schema_validate_directive__["a" /* default */]]).directive('sfKeyController', ['schemaForm', 'sfPath', __WEBPACK_IMPORTED_MODULE_11_sf_key_directive__["a" /* default */]]);
+.directive('sfChanged', __WEBPACK_IMPORTED_MODULE_7_sf_changed_directive__["a" /* default */]).directive('sfField', ['$parse', '$compile', '$http', '$templateCache', '$interpolate', '$q', 'sfErrorMessage', 'sfPath', 'sfSelect', __WEBPACK_IMPORTED_MODULE_8_sf_field_directive__["a" /* default */]]).directive('sfMessage', ['$injector', 'sfErrorMessage', __WEBPACK_IMPORTED_MODULE_9_sf_message_directive__["a" /* default */]]).directive('sfNewArray', ['sfSelect', 'sfPath', 'schemaForm', __WEBPACK_IMPORTED_MODULE_10_sf_array_directive__["a" /* default */]]).directive('sfSchema', ['$compile', '$http', '$templateCache', '$q', 'schemaForm', 'schemaFormDecorators', 'sfSelect', 'sfPath', 'sfBuilder', __WEBPACK_IMPORTED_MODULE_12_sf_schema_directive__["a" /* default */]]).directive('schemaValidate', ['sfValidator', '$parse', 'sfSelect', '$interpolate', __WEBPACK_IMPORTED_MODULE_13_schema_validate_directive__["a" /* default */]]).directive('sfKeyController', ['schemaForm', 'sfPath', __WEBPACK_IMPORTED_MODULE_11_sf_key_directive__["a" /* default */]]);
 
 /***/ }),
 /* 5 */
@@ -3305,7 +3305,7 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
 
 
-/* harmony default export */ __webpack_exports__["a"] = function (sfValidator, $parse, sfSelect) {
+/* harmony default export */ __webpack_exports__["a"] = function (sfValidator, $parse, sfSelect, $interpolate) {
   return {
     restrict: 'A',
     scope: false,
@@ -3322,15 +3322,26 @@ __WEBPACK_IMPORTED_MODULE_1_angular___default.a.module('schemaForm', deps)
       var error = null;
       var form = scope.$eval(attrs.schemaValidate);
 
-      if (form.copyValueTo) {
+      //TODO move this out of validate
+      var copyTo = typeof form.copyValueTo === 'string' ? [form.copyValueTo] : form.copyValueTo;
+      if (copyTo && copyTo.length) {
         ngModel.$viewChangeListeners.push(function () {
-          var paths = form.copyValueTo;
-          __WEBPACK_IMPORTED_MODULE_0_angular___default.a.forEach(paths, function (path) {
+          var context = {
+            "model": scope.model,
+            "form": form,
+            "arrayIndex": scope.$index,
+            "arrayIndices": scope.arrayIndices,
+            "path": scope.path,
+            "$i": scope.$i,
+            "$index": scope.$index
+          };
+          __WEBPACK_IMPORTED_MODULE_0_angular___default.a.forEach(copyTo, function (copyToPath) {
+            var path = copyToPath.replace(/\[/g, "[{{ ").replace(/\]/g, " }}]").replace(/^model\./, "");
+            path = $interpolate(path)(context);
             sfSelect(path, scope.model, ngModel.$modelValue);
           });
         });
       };
-
       // Validate against the schema.
 
       var validate = function validate(viewValue, triggered) {

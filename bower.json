@@ -1,6 +1,5 @@
 {
   "name": "angular-schema-form-bootstrap",
-  "version": "1.0.0-alpha.1",
   "authors": [
     "David Jensen (Textalk) <david.lgj@gmail.com>",
     "Marcel Bennett <iamanthropic@gmail.com>"
@@ -23,7 +22,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-schema-form": "1.0.0-alpha.2"
+    "angular-schema-form": "1.0.0-alpha.4"
   },
   "devDependencies": {
     "angular-ui-ace": "bower",
